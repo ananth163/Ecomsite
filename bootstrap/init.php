@@ -13,6 +13,9 @@ require_once(__DIR__ . '/../app/config/_env.php');
 // Load Autoloader
 require_once(__DIR__ . '/../vendor/autoload.php');
 
+// Instantiate Database class
+new App\Classes\Database;
+
 // Load routes 
 require_once(__DIR__ . '/../app/routing/routes.php');
 
