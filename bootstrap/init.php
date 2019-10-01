@@ -1,5 +1,6 @@
 <?php 
 
+use App\Classes\ErrorHandler;
 use App\Routedispatcher;
 
 // Start session if not already started
@@ -15,6 +16,19 @@ require_once(__DIR__ . '/../vendor/autoload.php');
 
 // Instantiate Database class
 new App\Classes\Database;
+
+// Load custom error handler
+ErrorHandler::register();
+
+//set_error_handler( 'handleError' );
+
+
+
+ /*           $whoops = new \Whoops\Run;
+
+            $whoops->prependHandler(new \Whoops\Handler\PrettyPageHandler);
+
+            $whoops->register();*/
 
 // Load routes 
 require_once(__DIR__ . '/../app/routing/routes.php');

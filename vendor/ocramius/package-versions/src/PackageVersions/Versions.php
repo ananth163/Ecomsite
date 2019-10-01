@@ -27,6 +27,7 @@ final class Versions
   'doctrine/event-manager' => 'v1.0.0@a520bc093a0170feeb6b14e9d83f3a14452e64b3',
   'doctrine/inflector' => 'v1.3.0@5527a48b7313d15261292c149e55e26eae771b0a',
   'doctrine/migrations' => 'v2.0.0@0101f5bd7f4e5043bf8630db2930f8fd7da552b6',
+  'filp/whoops' => '2.5.0@cde50e6720a39fdacb240159d3eea6865d51fd96',
   'illuminate/container' => 'v5.8.35@b42e5ef939144b77f78130918da0ce2d9ee16574',
   'illuminate/contracts' => 'v5.8.35@00fc6afee788fa07c311b0650ad276585f8aef96',
   'illuminate/database' => 'v5.8.35@56635c5e683a2e3c6c01a8a3bcad3683223d3cec',
@@ -38,6 +39,7 @@ final class Versions
   'ocramius/package-versions' => '1.5.1@1d32342b8c1eb27353c8887c366147b4c2da673c',
   'ocramius/proxy-manager' => '2.2.3@4d154742e31c35137d5374c998e8f86b54db2e2f',
   'philo/laravel-blade' => 'v3.1@3f0ce2ee198604c53c25188110e6d7b5e887527a',
+  'phpmailer/phpmailer' => 'v6.1.1@26bd96350b0b2fcbf0ef4e6f0f9cf3528302a9d8',
   'phpoption/phpoption' => '1.5.0@94e644f7d2051a5f0fcf77d81605f152eecff0ed',
   'psr/container' => '1.0.0@b7ce3b176482dbbc1245ebf52b181af44c2cf55f',
   'psr/log' => '1.1.0@6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd',
@@ -55,7 +57,7 @@ final class Versions
   'vlucas/phpdotenv' => 'v3.6.0@1bdf24f065975594f6a117f0f1f6cabf1333b156',
   'zendframework/zend-code' => '3.3.2@936fa7ad4d53897ea3e3eb41b5b760828246a20b',
   'zendframework/zend-eventmanager' => '3.2.1@a5e2583a211f73604691586b8406ff7296a946dd',
-  '__root__' => 'dev-master@6a2c55cb7a50f4bc9bb2ff0add1a2ac3e3d93801',
+  '__root__' => 'dev-master@79eee9a2c46a3aec2dea7464575e94f8be4111d8',
 );
 
     private function __construct()

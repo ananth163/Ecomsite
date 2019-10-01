@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'Zend\\EventManager\\' => array($vendorDir . '/zendframework/zend-eventmanager/src'),
     'Zend\\Code\\' => array($vendorDir . '/zendframework/zend-code/src'),
+    'Whoops\\' => array($vendorDir . '/filp/whoops/src/Whoops'),
     'Symfony\\Polyfill\\Php73\\' => array($vendorDir . '/symfony/polyfill-php73'),
     'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
     'Symfony\\Polyfill\\Ctype\\' => array($vendorDir . '/symfony/polyfill-ctype'),
@@ -23,6 +24,7 @@ return array(
     'Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
     'Philo\\Blade\\' => array($vendorDir . '/philo/laravel-blade/src'),
     'PackageVersions\\' => array($vendorDir . '/ocramius/package-versions/src/PackageVersions'),
+    'PHPMailer\\PHPMailer\\' => array($vendorDir . '/phpmailer/phpmailer/src'),
     'Illuminate\\View\\' => array($vendorDir . '/illuminate/view'),
     'Illuminate\\Support\\' => array($vendorDir . '/illuminate/support'),
     'Illuminate\\Filesystem\\' => array($vendorDir . '/illuminate/filesystem'),

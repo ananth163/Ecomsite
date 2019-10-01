@@ -20,6 +20,10 @@ class ComposerStaticInita426f167b5291332f5b989cb05db0d49
             'Zend\\EventManager\\' => 18,
             'Zend\\Code\\' => 10,
         ),
+        'W' => 
+        array (
+            'Whoops\\' => 7,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Php73\\' => 23,
@@ -40,6 +44,7 @@ class ComposerStaticInita426f167b5291332f5b989cb05db0d49
             'Psr\\Container\\' => 14,
             'Philo\\Blade\\' => 12,
             'PackageVersions\\' => 16,
+            'PHPMailer\\PHPMailer\\' => 20,
         ),
         'I' => 
         array (
@@ -78,6 +83,10 @@ class ComposerStaticInita426f167b5291332f5b989cb05db0d49
         'Zend\\Code\\' => 
         array (
             0 => __DIR__ . '/..' . '/zendframework/zend-code/src',
+        ),
+        'Whoops\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/filp/whoops/src/Whoops',
         ),
         'Symfony\\Polyfill\\Php73\\' => 
         array (
@@ -138,6 +147,10 @@ class ComposerStaticInita426f167b5291332f5b989cb05db0d49
         'PackageVersions\\' => 
         array (
             0 => __DIR__ . '/..' . '/ocramius/package-versions/src/PackageVersions',
+        ),
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
         ),
         'Illuminate\\View\\' => 
         array (
@@ -218,9 +231,9 @@ class ComposerStaticInita426f167b5291332f5b989cb05db0d49
     public static $classMap = array (
         'AltoRouter' => __DIR__ . '/..' . '/altorouter/altorouter/AltoRouter.php',
         'App\\Classes\\Database' => __DIR__ . '/../..' . '/app/classes/Database.php',
+        'App\\Classes\\Mail' => __DIR__ . '/../..' . '/app/classes/Mail.php',
         'App\\Controllers\\Basecontroller' => __DIR__ . '/../..' . '/app/controllers/Basecontroller.php',
         'App\\Controllers\\Indexcontroller' => __DIR__ . '/../..' . '/app/controllers/Indexcontroller.php',
-        'App\\Controllers\\Installcontroller' => __DIR__ . '/../..' . '/app/controllers/Installcontroller.php',
         'App\\Routedispatcher' => __DIR__ . '/../..' . '/app/routing/Routedispatcher.php',
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',
         'Carbon\\CarbonImmutable' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonImmutable.php',
@@ -1020,6 +1033,11 @@ class ComposerStaticInita426f167b5291332f5b989cb05db0d49
         'Illuminate\\View\\ViewName' => __DIR__ . '/..' . '/illuminate/view/ViewName.php',
         'Illuminate\\View\\ViewServiceProvider' => __DIR__ . '/..' . '/illuminate/view/ViewServiceProvider.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
+        'PHPMailer\\PHPMailer\\Exception' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/Exception.php',
+        'PHPMailer\\PHPMailer\\OAuth' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/OAuth.php',
+        'PHPMailer\\PHPMailer\\PHPMailer' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/PHPMailer.php',
+        'PHPMailer\\PHPMailer\\POP3' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/POP3.php',
+        'PHPMailer\\PHPMailer\\SMTP' => __DIR__ . '/..' . '/phpmailer/phpmailer/src/SMTP.php',
         'PackageVersions\\FallbackVersions' => __DIR__ . '/..' . '/ocramius/package-versions/src/PackageVersions/FallbackVersions.php',
         'PackageVersions\\Installer' => __DIR__ . '/..' . '/ocramius/package-versions/src/PackageVersions/Installer.php',
         'PackageVersions\\Versions' => __DIR__ . '/..' . '/ocramius/package-versions/src/PackageVersions/Versions.php',
@@ -1391,6 +1409,24 @@ class ComposerStaticInita426f167b5291332f5b989cb05db0d49
         'Symfony\\Polyfill\\Ctype\\Ctype' => __DIR__ . '/..' . '/symfony/polyfill-ctype/Ctype.php',
         'Symfony\\Polyfill\\Mbstring\\Mbstring' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/Mbstring.php',
         'Symfony\\Polyfill\\Php73\\Php73' => __DIR__ . '/..' . '/symfony/polyfill-php73/Php73.php',
+        'Whoops\\Exception\\ErrorException' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/ErrorException.php',
+        'Whoops\\Exception\\Formatter' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/Formatter.php',
+        'Whoops\\Exception\\Frame' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/Frame.php',
+        'Whoops\\Exception\\FrameCollection' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/FrameCollection.php',
+        'Whoops\\Exception\\Inspector' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/Inspector.php',
+        'Whoops\\Handler\\CallbackHandler' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Handler/CallbackHandler.php',
+        'Whoops\\Handler\\Handler' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Handler/Handler.php',
+        'Whoops\\Handler\\HandlerInterface' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Handler/HandlerInterface.php',
+        'Whoops\\Handler\\JsonResponseHandler' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Handler/JsonResponseHandler.php',
+        'Whoops\\Handler\\PlainTextHandler' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Handler/PlainTextHandler.php',
+        'Whoops\\Handler\\PrettyPageHandler' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Handler/PrettyPageHandler.php',
+        'Whoops\\Handler\\XmlResponseHandler' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Handler/XmlResponseHandler.php',
+        'Whoops\\Run' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Run.php',
+        'Whoops\\RunInterface' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/RunInterface.php',
+        'Whoops\\Util\\HtmlDumperOutput' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/HtmlDumperOutput.php',
+        'Whoops\\Util\\Misc' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/Misc.php',
+        'Whoops\\Util\\SystemFacade' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/SystemFacade.php',
+        'Whoops\\Util\\TemplateHelper' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Util/TemplateHelper.php',
         'Zend\\Code\\Annotation\\AnnotationCollection' => __DIR__ . '/..' . '/zendframework/zend-code/src/Annotation/AnnotationCollection.php',
         'Zend\\Code\\Annotation\\AnnotationInterface' => __DIR__ . '/..' . '/zendframework/zend-code/src/Annotation/AnnotationInterface.php',
         'Zend\\Code\\Annotation\\AnnotationManager' => __DIR__ . '/..' . '/zendframework/zend-code/src/Annotation/AnnotationManager.php',
