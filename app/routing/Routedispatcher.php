@@ -69,23 +69,21 @@ class Routedispatcher {
 
 	protected function parsetarget( $target )
 	{
-		if (is_string($target)) {
-			
-			if( strpos($target, '@') !== false ) {
-
-				list( $this->controller, $this->method ) = explode('@', $target);
-
-			} else {
-
-				throw new \Exception("Target of current route {$target} has incorrect separator");
-			}
-		} else {
+		if ( !is_string($target) ) {
 			
 			throw new \Exception("Target of current route {$target} has incorrect type");
+		
+		}
+
+		if( strpos($target, '@') == false )
+		{
+
+			throw new \Exception("Target of current route {$target} has incorrect separator");
 
 		}
-		
 
+		list( $this->controller, $this->method ) = explode('@', $target); 
+		
 	}
 
 	/** 
@@ -97,30 +95,26 @@ class Routedispatcher {
 
 	protected function dispatch()
 	{
-		if( !empty($this->controller) && !empty($this->method) )
+		
+		if( empty($this->controller) || empty($this->method) )
 		{
-			//Instantiate Controller
-			$controller = new $this->controller();
 			
-			if (is_callable(array($controller, $this->method))) {
-			
-				$controller->{$this->method}(...array_values($this->params));
-
-			} else {
-			
-				throw new \Exception("The {$this->method} does not exist in {$controller}");
-
-			}
-
-
-		} else {
-
 			throw new \Exception('Cannot dispatch : controller or method is empty');
-		}		
+	
+		} 
 
+		$controller = new $this->controller();
+			
+		if ( !is_callable(array($controller, $this->method) ) )
+		{
+			
+			throw new \Exception("The {$this->method} method does not exist in {$controller} controller");
+
+		}
+
+		$controller->{$this->method}(...array_values($this->params));	
 
 	}
-
 	
 }
 

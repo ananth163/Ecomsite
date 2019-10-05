@@ -2,9 +2,6 @@
 
 namespace App\Classes;
 
-//use Whoops\Handler\PrettyPageHandler;
-//use Whoops\Run;
-
 /**
  * Custom ErrorHandler class
  **/

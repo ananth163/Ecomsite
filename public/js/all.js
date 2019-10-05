@@ -23205,6 +23205,17 @@ __webpack_require__(/*! slick-carousel/slick/slick.min */ "./node_modules/slick-
 
 /***/ }),
 
+/***/ "./resources/assets/sass/404.scss":
+/*!****************************************!*\
+  !*** ./resources/assets/sass/404.scss ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/assets/sass/app.scss":
 /*!****************************************!*\
   !*** ./resources/assets/sass/app.scss ***!
@@ -23216,15 +23227,28 @@ __webpack_require__(/*! slick-carousel/slick/slick.min */ "./node_modules/slick-
 
 /***/ }),
 
+/***/ "./resources/assets/sass/generic.sass":
+/*!********************************************!*\
+  !*** ./resources/assets/sass/generic.sass ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 0:
-/*!***************************************************************************!*\
-  !*** multi ./resources/assets/js/app.js ./resources/assets/sass/app.scss ***!
-  \***************************************************************************/
+/*!*************************************************************************************************************************************************!*\
+  !*** multi ./resources/assets/js/app.js ./resources/assets/sass/404.scss ./resources/assets/sass/app.scss ./resources/assets/sass/generic.sass ***!
+  \*************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! D:\Ecomsite\resources\assets\js\app.js */"./resources/assets/js/app.js");
-module.exports = __webpack_require__(/*! D:\Ecomsite\resources\assets\sass\app.scss */"./resources/assets/sass/app.scss");
+__webpack_require__(/*! D:\Ecomsite\resources\assets\sass\404.scss */"./resources/assets/sass/404.scss");
+__webpack_require__(/*! D:\Ecomsite\resources\assets\sass\app.scss */"./resources/assets/sass/app.scss");
+module.exports = __webpack_require__(/*! D:\Ecomsite\resources\assets\sass\generic.sass */"./resources/assets/sass/generic.sass");
 
 
 /***/ })

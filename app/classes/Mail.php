@@ -58,6 +58,10 @@ class Mail {
     	// Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
     	$this->mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
 
+    	/**
+    	 * Todo: Remove this once app deployed to PROD environment
+    	 *
+    	 **/
     	// Workaround for SSL connection failure in local environment
     	$this->mail->SMTPOptions = array(
     		'ssl' => array(
