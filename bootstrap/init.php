@@ -18,17 +18,7 @@ require_once(__DIR__ . '/../vendor/autoload.php');
 new App\Classes\Database;
 
 // Load custom error handler
-ErrorHandler::register();
-
-//set_error_handler( 'handleError' );
-
-
-
- /*           $whoops = new \Whoops\Run;
-
-            $whoops->prependHandler(new \Whoops\Handler\PrettyPageHandler);
-
-            $whoops->register();*/
+ErrorHandler::load( getenv('APP_ENV') )->register();
 
 // Load routes 
 require_once(__DIR__ . '/../app/routing/routes.php');

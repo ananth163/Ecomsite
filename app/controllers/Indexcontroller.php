@@ -13,8 +13,8 @@ class Indexcontroller extends Basecontroller
 	function show()
 	{
 
-		echo "This is Index Controller";
-				
+		echo "Indexcontroller";
+						
 	}
 }
 

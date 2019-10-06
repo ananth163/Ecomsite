@@ -9,33 +9,37 @@ class ErrorHandler
 {
     
     /**
-     * Registers an error handler with PHP
+     * Load environment - local or prod
      *
-     *  Whoops for Local environment
-     *  
-     *  handleError for Production 
+     * @param string $environment Local or prod
      *
      **/
-     public static function register()
-     {
+    public static function load( $environment)
+    {
 
-     	$environment = getenv('APP_ENV');
-
-        if ( $environment === "local") {
-            
-            // For local environment instantiate Whoops
-            
-            $whoops = new \Whoops\Run;
+    	if ( $environment === "local")
+    	{
+    		
+    		$whoops = new \Whoops\Run;
 
             $whoops->prependHandler(new \Whoops\Handler\PrettyPageHandler);
 
-            $whoops->register();
-                  
-        } else {
+            return $whoops;
 
-        	set_error_handler( [ new static, 'handleError' ] );
+    	}
 
-        }
+    	return new static;
+
+    }
+    /**
+     * Registers an error handler with PHP
+     *
+     *
+     **/
+     public function register()
+     {
+
+       	set_error_handler( [ $this, 'handleError' ] );
 
      } 
 
@@ -68,11 +72,6 @@ class ErrorHandler
         				'message' => $errstr,
         				'file'    => $errfile,
         				'line'	  => $errline ];
-
-            /** returns False if email is not delivered
-             * and Default error Handler is then called
-             * and error displayed to user
-             **/
 
             $this->emailAdmin( $errdata )->showErrorMessage();
 
