@@ -1,3 +1,11 @@
+import { TweenLite, TimelineMax } from 'gsap/all';
+
+// Ensure modules don't get dropped by tree-shaking
+const activated = [
+    TweenMax,
+    TimelineMax,
+];
+
 var 
 	yetiTL, chatterTL,
     	furLightColor = "#FFF",

@@ -7,3 +7,5 @@ require('foundation-sites/dist/js/foundation.min');
 // Other Dependencies
 require('slick-carousel/slick/slick.min');
 
+// custom js files
+require('../js/init');

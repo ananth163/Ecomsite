@@ -212,8 +212,6 @@
 	<h3>Hello?? Is somebody there?!?</h3>
 	<p>We know it’s scary, but the page you’re trying to reach can’t be found. Perhaps it was just a bad <span>link</span> dream?</p>
 </div>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TimelineMax.min.js"></script>
 <script type="text/javascript" src="/js/404.js"></script>
 </body>
 </html>

@@ -23201,7 +23201,25 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 __webpack_require__(/*! foundation-sites/dist/js/foundation.min */ "./node_modules/foundation-sites/dist/js/foundation.min.js"); // Other Dependencies
 
 
-__webpack_require__(/*! slick-carousel/slick/slick.min */ "./node_modules/slick-carousel/slick/slick.min.js");
+__webpack_require__(/*! slick-carousel/slick/slick.min */ "./node_modules/slick-carousel/slick/slick.min.js"); // custom js files
+
+
+__webpack_require__(/*! ../js/init */ "./resources/assets/js/init.js");
+
+/***/ }),
+
+/***/ "./resources/assets/js/init.js":
+/*!*************************************!*\
+  !*** ./resources/assets/js/init.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function () {
+  'use strict';
+
+  $(document).foundation();
+})();
 
 /***/ }),
 
