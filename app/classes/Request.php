@@ -29,7 +29,7 @@ class Request
      * @return mixed $result The return value of this function depends on the fetch type
      *
      **/
-    public static function fetchAll($fetchMode = Request::FETCH_OBJ)
+    public static function fetchAll( $fetchMode = Request::FETCH_OBJ)
     {
         if (count($_GET) > 0) {
             $result['GET'] = $_GET;
@@ -43,7 +43,7 @@ class Request
             $result['FILES'] = $_FILES;
         }
 
-        return json_decode(json_encode($result), $fecthMode);
+        return json_decode(json_encode($result), $fetchMode);
     }
 
     /**
@@ -57,7 +57,7 @@ class Request
      **/
     public static function hasType($requestType)
     {
-        return array_key_exists($requestType, self::fetchAll(FETCH_ASSOC));
+        return array_key_exists($requestType, self::fetchAll(Request::FETCH_ASSOC));
     }
 
     /**
@@ -68,8 +68,13 @@ class Request
      * @return object returns JSON object with properties as different field in
      *                        HTML form
      **/
-    public static function fetchType($requestType)
+    public static function fetchType($requestType, $fetchMode = Request::FETCH_OBJ)
     {
+        if ($fetchMode) {
+        	
+        	return self::fetchAll($fetchMode)[$requestType];
+        }
+
         return self::fetchAll()->$requestType;
     }
 

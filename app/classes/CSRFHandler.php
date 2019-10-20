@@ -128,6 +128,7 @@ class CSRFHandler
     {
         $currentToken = self::getStoredToken();
 
+        //If new token matches old one, generate new one
         do {
             $token = random_bytes(self::TOKEN_LENGTH);
         } while ($token === $currentToken);

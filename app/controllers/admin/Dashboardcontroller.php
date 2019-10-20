@@ -2,6 +2,7 @@
 
 namespace App\Controllers\Admin;
 
+use App\Classes\Request;
 use App\Classes\Session;
 use App\Controllers\Basecontroller;
 
@@ -12,7 +13,7 @@ use App\Controllers\Basecontroller;
 class Dashboardcontroller extends Basecontroller
 {
 	
-	function show()
+	public function show()
 	{
 		
 		Session::setValueFor('admin', 'Hello Admin');
@@ -28,6 +29,16 @@ class Dashboardcontroller extends Basecontroller
 		return view('admin/dashboard', [ 'admin' => $msg ]);
 		
 	}
+
+	public function store ()
+	{
+		
+		if (Request::hasType('POST')) {
+			var_dump(Request::fetchType('POST'));
+		}
+	}
+
+
 }
 
  ?>

@@ -14,6 +14,11 @@
 	@else
 	<h1>Validation Failed</h1>
 	@endif
+	
+	<form action="/admin" method="POST">
+		<input type="text" name="name" placeholder="Enter Name">
+		<button type="submit" name="submit">Submit</button>
+	</form>
 
 
 @endsection

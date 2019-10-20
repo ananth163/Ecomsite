@@ -49,4 +49,26 @@ function view( $path, $data = [] )
 
  } 
 
+ /**
+  * Converts string into slug
+  *
+  * @param string $name
+  *
+  * @return string slug
+  *
+  **/
+ function slug( $string )
+ {
+ 	//Remove all characters other than letters, numbers, whitespace and underscore
+ 	$string = preg_replace('/[^\_\p{L}\p{N}\p{Z}]+/u', '', mb_strtolower($string));
+ 	
+ 	// Replace underscores and whitespaces with a dash
+ 	$string = preg_replace('/[\_\s]+/', '-', $string);
+
+ 	// Remove whitespaces at beginning and end of the string
+ 	$string = trim($string, '-');
+
+ 	return $string;
+ }
+
  ?>
