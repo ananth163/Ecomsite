@@ -33,9 +33,10 @@ final class Versions
   'illuminate/database' => 'v5.8.35@56635c5e683a2e3c6c01a8a3bcad3683223d3cec',
   'illuminate/events' => 'v5.8.35@a85d7c273bc4e3357000c5fc4812374598515de3',
   'illuminate/filesystem' => 'v5.8.35@494ba903402d64ec49c8d869ab61791db34b2288',
+  'illuminate/pagination' => 'v5.8.35@391134bc87a47b3dfe5cf60df73e5e0080aec220',
   'illuminate/support' => 'v5.8.35@e63a495d3bf01654f70def1046fb925c4bb56506',
   'illuminate/view' => 'v5.8.35@c859919bc3be97a3f114377d5d812f047b8ea90d',
-  'nesbot/carbon' => '2.25.2@443fe5f1498147e0fbc792142b5dc43e2e8a533f',
+  'nesbot/carbon' => '2.25.3@d07636581795383e2fea2d711212d30f941f2039',
   'ocramius/package-versions' => '1.5.1@1d32342b8c1eb27353c8887c366147b4c2da673c',
   'ocramius/proxy-manager' => '2.2.3@4d154742e31c35137d5374c998e8f86b54db2e2f',
   'philo/laravel-blade' => 'v3.1@3f0ce2ee198604c53c25188110e6d7b5e887527a',
@@ -57,7 +58,7 @@ final class Versions
   'vlucas/phpdotenv' => 'v3.6.0@1bdf24f065975594f6a117f0f1f6cabf1333b156',
   'zendframework/zend-code' => '3.4.0@46feaeecea14161734b56c1ace74f28cb329f194',
   'zendframework/zend-eventmanager' => '3.2.1@a5e2583a211f73604691586b8406ff7296a946dd',
-  '__root__' => 'dev-master@3a8f8fd4c6061177f1f69eda98769ecaac6e26d3',
+  '__root__' => 'dev-master@f903d253c478e1a262d67adcf459b0ab9f4a11e9',
 );
 
     private function __construct()

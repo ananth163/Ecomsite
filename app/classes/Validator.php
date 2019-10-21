@@ -220,7 +220,7 @@ class Validator {
 	protected function unique($column, $value, $policy)
 	{
 		if (empty(trim($value))) {
-			return false;
+			return true;
 		}
 		return Capsule::table($policy)->where($column, $value)->doesntExist();
 	}
@@ -280,7 +280,7 @@ class Validator {
 	{
 		if(empty(trim($value)))
 		{
-			return false;
+			return true;
 		}
 
 		if(!preg_match('/^[a-zA-Z0-9.,_~@&%\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:\-\#]+$/', $value))
@@ -299,7 +299,7 @@ class Validator {
 	{
 		if(empty(trim($value)))
 		{
-			return false;
+			return true;
 		}
 
 		if(!preg_match('/^[a-zA-Z]+$/', $value))
@@ -318,7 +318,7 @@ class Validator {
 	{
 		if(empty(trim($value)))
 		{
-			return false;
+			return true;
 		}
 
 		if(!preg_match('/^[a-zA-Z_\-]+$/', $value))
@@ -337,7 +337,7 @@ class Validator {
 	{
 		if(empty(trim($value)))
 		{
-			return false;
+			return true;
 		}
 
 		if(!preg_match('/^[a-zA-Z0-9]+$/', $value))
@@ -356,7 +356,7 @@ class Validator {
 	{
 		if(empty(trim($value)))
 		{
-			return false;
+			return true;
 		}
 
 		if(!preg_match('/^[0-9]+$/', $value))

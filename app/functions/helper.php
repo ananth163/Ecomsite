@@ -71,4 +71,5 @@ function view( $path, $data = [] )
  	return $string;
  }
 
+ 
  ?>

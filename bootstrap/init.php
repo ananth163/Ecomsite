@@ -15,6 +15,9 @@ require_once(__DIR__ . '/../app/config/_env.php');
 // Load custom error handler
 ErrorHandler::load( getenv('APP_ENV') )->register();
 
+// Load Pagination Builder
+require_once(__DIR__ . '/../app/classes/PaginationBuilder.php');
+
 // Instantiate Database class
 new App\Classes\Database;
 

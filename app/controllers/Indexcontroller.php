@@ -14,7 +14,7 @@ class Indexcontroller extends Basecontroller
 	{
 
 		echo "Indexcontroller<br>";
-		echo slug(" Te!st t,h_.-+i!s   script! ");
+		
 						
 	}
 }

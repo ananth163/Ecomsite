@@ -9,26 +9,41 @@ use App\Controllers\Basecontroller;
 use App\Models\Category;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
+
 /**
  * For managing ProductCategories
  */
 class ProductCategoriescontroller extends Basecontroller
 {
+	
+	/**
+	 * Show all the product categories of application
+	 *
+	 * @return Illuminate\Pagination\LengthAwarePaginator
+	 * 
+	 **/
+	public function index($perPage)
+	{
+		//Get the paginated categories result
+		return $categories = Category::paginate($perPage);
+	}
+
 	/**
 	 * Show Product Categories
+	 *
+	 * @return Response
 	 *
 	 */
 	public function show ()
 	{
-		$categories = Category::all();
-		//var_dump($categories);
-		//exit();
-
-		return view('admin/categories', compact('categories'));
+		return view('admin/products/categories', ['categories' => 
+												  $this->index(5)]);
 	}
 
 	/**
-	 * Store User updates in Database
+	 * Store a new Product Category
+	 *
+	 * @return Response
 	 *
 	 */
 	public function store ()
@@ -46,27 +61,23 @@ class ProductCategoriescontroller extends Basecontroller
 			return view('errors/generic');
 		}
 
-		//Validate input
+		//Validate the request
 		$validator = Validator::make($request, ['name' => 
-			                                       'unique:categories|min:5|max:8']);
+			                                       'required|unique:categories|alpha']);
 
 		if ($validator->fails()) {
 			
-			var_dump($validator->errors());
-			exit();
+			return view('admin/products/categories', ['categories' => $this->index(5),
+										 		  	  'errors'  => $validator->errors()]);
 		}
 
-		// Store the user input into Database
-		$category = Category::create([
-								'name' => $request->name,
-							    'slug' => slug($request->name) ]);
+		// Store the Product category
+		Category::create([
+						'name' => $request->name,
+						'slug' => slug($request->name) ]);
 
-		// Send a message to user
-		$message = "Record Created";
-
-		$categories = Category::all();
-
-		return view('admin/categories', compact('categories', 'message'));		
+		return view('admin/products/categories', ['categories' => $this->index(5),
+										 		  'success'  => 'Category created']);		
 	}
 }
 

@@ -50,6 +50,7 @@ class ComposerStaticInita426f167b5291332f5b989cb05db0d49
         array (
             'Illuminate\\View\\' => 16,
             'Illuminate\\Support\\' => 19,
+            'Illuminate\\Pagination\\' => 22,
             'Illuminate\\Filesystem\\' => 22,
             'Illuminate\\Events\\' => 18,
             'Illuminate\\Database\\' => 20,
@@ -160,6 +161,10 @@ class ComposerStaticInita426f167b5291332f5b989cb05db0d49
         array (
             0 => __DIR__ . '/..' . '/illuminate/support',
         ),
+        'Illuminate\\Pagination\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/illuminate/pagination',
+        ),
         'Illuminate\\Filesystem\\' => 
         array (
             0 => __DIR__ . '/..' . '/illuminate/filesystem',
@@ -235,9 +240,11 @@ class ComposerStaticInita426f167b5291332f5b989cb05db0d49
         'App\\Classes\\ErrorHandler' => __DIR__ . '/../..' . '/app/classes/ErrorHandler.php',
         'App\\Classes\\FileHandler' => __DIR__ . '/../..' . '/app/classes/FileHandler.php',
         'App\\Classes\\Mail' => __DIR__ . '/../..' . '/app/classes/Mail.php',
+        'App\\Classes\\Paginator' => __DIR__ . '/../..' . '/app/classes/Paginator.php',
         'App\\Classes\\Redirect' => __DIR__ . '/../..' . '/app/classes/Redirect.php',
         'App\\Classes\\Request' => __DIR__ . '/../..' . '/app/classes/Request.php',
         'App\\Classes\\Session' => __DIR__ . '/../..' . '/app/classes/Session.php',
+        'App\\Classes\\Validator' => __DIR__ . '/../..' . '/app/classes/Validator.php',
         'App\\Controllers\\Admin\\Dashboardcontroller' => __DIR__ . '/../..' . '/app/controllers/admin/Dashboardcontroller.php',
         'App\\Controllers\\Admin\\ProductCategoriescontroller' => __DIR__ . '/../..' . '/app/controllers/admin/ProductCategoriescontroller.php',
         'App\\Controllers\\Basecontroller' => __DIR__ . '/../..' . '/app/controllers/Basecontroller.php',
@@ -938,6 +945,11 @@ class ComposerStaticInita426f167b5291332f5b989cb05db0d49
         'Illuminate\\Filesystem\\FilesystemAdapter' => __DIR__ . '/..' . '/illuminate/filesystem/FilesystemAdapter.php',
         'Illuminate\\Filesystem\\FilesystemManager' => __DIR__ . '/..' . '/illuminate/filesystem/FilesystemManager.php',
         'Illuminate\\Filesystem\\FilesystemServiceProvider' => __DIR__ . '/..' . '/illuminate/filesystem/FilesystemServiceProvider.php',
+        'Illuminate\\Pagination\\AbstractPaginator' => __DIR__ . '/..' . '/illuminate/pagination/AbstractPaginator.php',
+        'Illuminate\\Pagination\\LengthAwarePaginator' => __DIR__ . '/..' . '/illuminate/pagination/LengthAwarePaginator.php',
+        'Illuminate\\Pagination\\PaginationServiceProvider' => __DIR__ . '/..' . '/illuminate/pagination/PaginationServiceProvider.php',
+        'Illuminate\\Pagination\\Paginator' => __DIR__ . '/..' . '/illuminate/pagination/Paginator.php',
+        'Illuminate\\Pagination\\UrlWindow' => __DIR__ . '/..' . '/illuminate/pagination/UrlWindow.php',
         'Illuminate\\Support\\AggregateServiceProvider' => __DIR__ . '/..' . '/illuminate/support/AggregateServiceProvider.php',
         'Illuminate\\Support\\Arr' => __DIR__ . '/..' . '/illuminate/support/Arr.php',
         'Illuminate\\Support\\Carbon' => __DIR__ . '/..' . '/illuminate/support/Carbon.php',
