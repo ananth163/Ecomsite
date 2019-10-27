@@ -2,6 +2,8 @@
 
 @section('title', 'Dashboard')
 
+@section('pageid', 'adminCategories')
+
 @section('content')
 	<div class="category">
 		<div class="grid-x">
@@ -53,14 +55,19 @@
   									<td>{{$category->slug}}</td>
   									<td>{{$category->created_at->toFormattedDateString()}}</td>
   									<td>{{$category->updated_at->toFormattedDateString()}}</td>
-  									<td><a href="#"><i class="fas fa-edit"></i></a>
-  										<a href="#"><i class="fas fa-trash"></i></a></td>
-  								</tr>
+  									<td><a data-open="item-{{$category->id}}"><i class="fas fa-edit"></i></a>
+  										<a data-open="deleteitem-{{$category->id}}"><i class="fas fa-trash"></i></a>
+  										@include('admin.includes.modal')
+  										@include('admin.includes.deletemodal', ['id' => $category->id, 
+  																				'name' => $category->name] )
+  									</td>
+  								</tr>  								
   							@endforeach
   						</tbody>					
 					</table>
 					{{ $categories->links('pagination.categories', ['paginator' => $categories]) }}
 				</div>
+				
 			@endif
 		</div>
 		

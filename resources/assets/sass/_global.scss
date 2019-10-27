@@ -1,0 +1,58 @@
+.reveal-update{
+	
+	border 		    : 0;
+
+	border-radius	: 0.5rem;
+
+ &:focus{
+ 	outline-style	: none;
+ }
+
+ h3{
+
+ 	font-size		: 1.5rem;
+
+ 	}
+}
+
+.reveal-delete{
+	
+	width			: 30rem;
+    height			: 15rem;
+    padding			: 0.5rem;
+	border 		    : 0;
+
+	border-radius	: 0.5rem;
+
+ &:focus{
+ 	outline-style	: none;
+ }
+
+}
+
+.heading{
+	padding:9px 15px;
+    border-bottom:1px solid #eee;
+    background-color: #0480be;
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+     border-top-left-radius: 5px;
+     border-top-right-radius: 5px;
+     
+}
+
+.notification{
+	
+	margin-top	: 1.5rem;
+
+	display		: none;
+
+	ul{
+
+		li{
+			list-style-type: none;
+		}
+	}
+}

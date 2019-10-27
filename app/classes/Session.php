@@ -42,6 +42,30 @@ class Session {
     }
 
     /**
+	 * Flush Session data
+	 *
+	 * @param string $name
+	 *
+     * @return mixed
+     */
+    public static function flush( $key )
+    {
+        
+        if ( !self::hasKey($key) ) {
+        	
+        	return null;
+        	
+        }
+
+        $oldValue = self::getValueFor($key);
+
+        self::removeKey($key);
+
+        return $oldValue;
+
+    }
+
+    /**
 	 * Check for Session key
 	 *
 	 * @param string $key

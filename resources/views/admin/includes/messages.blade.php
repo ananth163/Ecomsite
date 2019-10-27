@@ -23,4 +23,15 @@
 		</div>
 	</div>
 	@endif
+	@if(App\Classes\Session::hasKey('success'))
+	<div class="cell small-5 large-offset-2">
+		<div class="callout small success" data-closable="slide-out-right">
+			<h5>Success!</h5>
+			<p>{{ App\Classes\Session::flush('success') }}</p>
+			<button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+    			<span aria-hidden="true">&times;</span>
+  			</button>				
+		</div>
+	</div>
+	@endif
 </div>

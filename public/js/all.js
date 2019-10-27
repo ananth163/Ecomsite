@@ -23188,6 +23188,98 @@ module.exports = g;
 
 /***/ }),
 
+/***/ "./resources/assets/js/admin/delete.js":
+/*!*********************************************!*\
+  !*** ./resources/assets/js/admin/delete.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function () {
+  'use strict';
+
+  SITE.admin["delete"] = function () {
+    // Get Category values
+    $('.delete-category').on('click', function (event) {
+      var token = $(this).data('token');
+      var id = $(this).attr('id');
+      $.ajax({
+        type: 'POST',
+        url: '/admin/products/categories/' + id + '/delete',
+        data: {
+          'token': token,
+          'id': id
+        },
+        success: function success(data) {
+          if (data.includes("success")) {
+            window.location.href = '/admin/products/categories';
+          }
+        },
+        error: function error(request) {
+          var errors = JSON.parse(request.responseText);
+          var ul = document.createElement('ul');
+          $.each(errors, function (key, value) {
+            var li = document.createElement('li');
+            li.appendChild(document.createTextNode(value));
+            ul.appendChild(li);
+          });
+          $(".notification").css("display", 'block').addClass('alert').delay(4000).slideUp(300).html(ul);
+        }
+      });
+      event.preventDefault();
+    });
+  };
+})();
+
+/***/ }),
+
+/***/ "./resources/assets/js/admin/update.js":
+/*!*********************************************!*\
+  !*** ./resources/assets/js/admin/update.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function () {
+  'use strict';
+
+  SITE.admin.update = function () {
+    // Get Category values
+    $('.update-category').on('click', function (event) {
+      var token = $(this).data('token');
+      var id = $(this).attr('id');
+      var name = $('#item-name-' + id).val();
+      $.ajax({
+        type: 'POST',
+        url: '/admin/products/categories/' + id + '/edit',
+        data: {
+          'token': token,
+          'name': name
+        },
+        success: function success(data) {
+          if (data.includes("success")) {
+            var response = JSON.parse(data);
+            $(".notification").css("display", 'block').removeClass('alert').addClass('success').delay(4000).slideUp(300).html(response.success);
+          }
+        },
+        error: function error(request) {
+          var errors = JSON.parse(request.responseText);
+          var ul = document.createElement('ul');
+          $.each(errors, function (key, value) {
+            var li = document.createElement('li');
+            li.appendChild(document.createTextNode(value));
+            ul.appendChild(li);
+          });
+          $(".notification").css("display", 'block').addClass('alert').delay(4000).slideUp(300).html(ul);
+        }
+      });
+      event.preventDefault();
+    });
+  };
+})();
+
+/***/ }),
+
 /***/ "./resources/assets/js/app.js":
 /*!************************************!*\
   !*** ./resources/assets/js/app.js ***!
@@ -23204,7 +23296,13 @@ __webpack_require__(/*! foundation-sites/dist/js/foundation.min */ "./node_modul
 __webpack_require__(/*! slick-carousel/slick/slick.min */ "./node_modules/slick-carousel/slick/slick.min.js"); // custom js files
 
 
-__webpack_require__(/*! ../js/init */ "./resources/assets/js/init.js");
+__webpack_require__(/*! ../../assets/js/site */ "./resources/assets/js/site.js");
+
+__webpack_require__(/*! ../../assets/js/admin/update */ "./resources/assets/js/admin/update.js");
+
+__webpack_require__(/*! ../../assets/js/admin/delete */ "./resources/assets/js/admin/delete.js");
+
+__webpack_require__(/*! ../../assets/js/init */ "./resources/assets/js/init.js");
 
 /***/ }),
 
@@ -23219,6 +23317,38 @@ __webpack_require__(/*! ../js/init */ "./resources/assets/js/init.js");
   'use strict';
 
   $(document).foundation();
+  $(document).ready(function () {
+    switch ($('body').data('pageid')) {
+      case 'home':
+        break;
+
+      case 'adminCategories':
+        SITE.admin.update();
+        SITE.admin["delete"]();
+        break;
+
+      default: //do nothing
+
+    }
+  });
+})();
+
+/***/ }),
+
+/***/ "./resources/assets/js/site.js":
+/*!*************************************!*\
+  !*** ./resources/assets/js/site.js ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function () {
+  'use strict';
+
+  window.SITE = {
+    global: {},
+    admin: {}
+  };
 })();
 
 /***/ }),

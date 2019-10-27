@@ -6,7 +6,7 @@
 	<!-- Font Awesome CDN -->
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 </head>
-<body>
+<body data-pageid="@yield('pageid')">
   
   <!-- Sidebar -->
   @include('admin.includes.admin-sidebar')

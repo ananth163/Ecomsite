@@ -6,7 +6,7 @@
 	<!-- Font Awesome CDN -->
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 </head>
-<body>
+<body data-pageid="<?php echo $__env->yieldContent('pageid'); ?>">
   
   <!-- Sidebar -->
   <?php echo $__env->make('admin.includes.admin-sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>

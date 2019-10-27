@@ -8,4 +8,7 @@ require('foundation-sites/dist/js/foundation.min');
 require('slick-carousel/slick/slick.min');
 
 // custom js files
-require('../js/init');
+require('../../assets/js/site');
+require('../../assets/js/admin/update');
+require('../../assets/js/admin/delete');
+require('../../assets/js/init');

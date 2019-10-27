@@ -1,5 +1,7 @@
 <?php $__env->startSection('title', 'Dashboard'); ?>
 
+<?php $__env->startSection('pageid', 'adminCategories'); ?>
+
 <?php $__env->startSection('content'); ?>
 	<div class="category">
 		<div class="grid-x">
@@ -51,15 +53,20 @@
   									<td><?php echo e($category->slug); ?></td>
   									<td><?php echo e($category->created_at->toFormattedDateString()); ?></td>
   									<td><?php echo e($category->updated_at->toFormattedDateString()); ?></td>
-  									<td><a href="#"><i class="fas fa-edit"></i></a>
-  										<a href="#"><i class="fas fa-trash"></i></a></td>
-  								</tr>
+  									<td><a data-open="item-<?php echo e($category->id); ?>"><i class="fas fa-edit"></i></a>
+  										<a data-open="deleteitem-<?php echo e($category->id); ?>"><i class="fas fa-trash"></i></a>
+  										<?php echo $__env->make('admin.includes.modal', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+  										<?php echo $__env->make('admin.includes.deletemodal', ['id' => $category->id, 
+  																				'name' => $category->name] , \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+  									</td>
+  								</tr>  								
   							<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
   						</tbody>					
 					</table>
 					<?php echo e($categories->links('pagination.categories', ['paginator' => $categories])); ?>
 
 				</div>
+				
 			<?php endif; ?>
 		</div>
 		
