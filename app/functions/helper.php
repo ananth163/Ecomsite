@@ -11,7 +11,7 @@ use Philo\Blade\Blade;
  *
  **/
 
-function view( $path, $data = [] )
+function view( $path = '', $data = [] )
 {
 	$views = __DIR__ . '/../../resources/views' ;
 

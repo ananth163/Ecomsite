@@ -23,7 +23,8 @@
                     @if ($page == $paginator->currentPage())
                         <li class="current"><span class="show-for-sr">{{ $page }}</span>{{ $page }}</li>
                     @else
-                        <li><a href="{{ $url }}">{{ $page }}</a></li>
+                        <li><a href="{{ $url }}">
+                        {{ $page }}</a></li>
                     @endif
                 @endforeach
             @endif
@@ -37,4 +38,5 @@
         @endif
     </ul>
 </nav>
+@else
 @endif

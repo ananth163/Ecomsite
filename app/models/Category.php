@@ -33,6 +33,14 @@ class Category extends Model
      * @var array
      */
     protected $dates = ['deleted_at'];
+
+    /**
+     * Get the subcategories for the product category.
+     */
+    public function subcategories()
+    {
+        return $this->hasMany('App\Models\SubCategory');
+    }
 }
 
 

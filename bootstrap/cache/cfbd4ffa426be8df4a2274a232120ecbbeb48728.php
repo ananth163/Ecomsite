@@ -33,17 +33,16 @@
 		</div>
 		<div class="grid-x grid-padding-x">
 			<?php if(count($categories) == 0): ?>
-				<h3>No Categories available to display</h3>
+				<h4>No Categories available to display</h4>
 			<?php else: ?>
 				<div class="cell small-12 medium-10">
 					<table class="hover">
 						<thead>
     						<tr>
-      							<th width="250">Category Name</th>
-      							<th width="250">Category Slug</th>
-      							<th width="150">Created at</th>
-      							<th width="150">Updated at</th>
-      							<th>Update</th>
+      							<th>Name</th>
+      							<th>Slug</th>
+      							<th>Last Updated</th>
+      							<th>Action</th>
     						</tr>
   						</thead>
   						<tbody>
@@ -51,11 +50,13 @@
   								<tr>
   									<td><?php echo e($category->name); ?></td>
   									<td><?php echo e($category->slug); ?></td>
-  									<td><?php echo e($category->created_at->toFormattedDateString()); ?></td>
   									<td><?php echo e($category->updated_at->toFormattedDateString()); ?></td>
-  									<td><a data-open="item-<?php echo e($category->id); ?>"><i class="fas fa-edit"></i></a>
+  									<td>
+  										<a class = "load-category" id="<?php echo e($category->id); ?>"><i class="fas fa-edit"></i></a>
   										<a data-open="deleteitem-<?php echo e($category->id); ?>"><i class="fas fa-trash"></i></a>
-  										<?php echo $__env->make('admin.includes.modal', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+  										<?php echo $__env->make('admin.includes.createmodal', ['id' => $category->id, 
+  																				'name' => $category->name] , \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+  										<?php echo $__env->make('admin.includes.updatemodal', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
   										<?php echo $__env->make('admin.includes.deletemodal', ['id' => $category->id, 
   																				'name' => $category->name] , \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
   									</td>
@@ -63,13 +64,13 @@
   							<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
   						</tbody>					
 					</table>
-					<?php echo e($categories->links('pagination.categories', ['paginator' => $categories])); ?>
+					<?php echo e($categories->links('pagination.categories', 
+													['paginator' => $categories])); ?>
 
 				</div>
 				
 			<?php endif; ?>
 		</div>
-		
 
 	</div>
 

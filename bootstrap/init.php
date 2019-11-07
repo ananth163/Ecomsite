@@ -3,6 +3,11 @@
 use App\Classes\ErrorHandler;
 use App\Routedispatcher;
 
+/** Define ABSPATH as this file's directory */
+if ( ! defined( 'ABSPATH' ) ) {
+	define( 'ABSPATH', dirname(dirname( __FILE__ )) . '/' );
+}
+
 // Start session if not already started
 if (!isset($_SESSION))  session_start();
 
@@ -16,7 +21,7 @@ require_once(__DIR__ . '/../app/config/_env.php');
 ErrorHandler::load( getenv('APP_ENV') )->register();
 
 // Load Pagination Builder
-require_once(__DIR__ . '/../app/classes/PaginationBuilder.php');
+//require_once(__DIR__ . '/../app/classes/PaginationBuilder.php');
 
 // Instantiate Database class
 new App\Classes\Database;

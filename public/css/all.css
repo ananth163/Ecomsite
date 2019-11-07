@@ -7791,6 +7791,10 @@ html.is-reveal-open body {
   font-size: 1.5rem;
 }
 
+.reveal-update h2 {
+  font-size: 1rem;
+}
+
 .reveal-delete {
   width: 30rem;
   height: 15rem;
@@ -7801,6 +7805,10 @@ html.is-reveal-open body {
 
 .reveal-delete:focus {
   outline-style: none;
+}
+
+.save {
+  display: none;
 }
 
 .heading {

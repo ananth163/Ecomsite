@@ -79,6 +79,19 @@ class Request
     }
 
     /**
+     * Get the query string value from URL
+     *
+     * @param $key
+     *
+     * @return $value Returns the value of query
+     *
+     **/
+    public static function query ( $key)
+    {
+        return $_GET[$key] ?? null;
+    }
+
+    /**
      * Refresh the request
      *  Clears the request values
      **/

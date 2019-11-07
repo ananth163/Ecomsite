@@ -3,11 +3,13 @@
 namespace App\Controllers\Admin;
 
 use App\Classes\CSRFHandler;
+use App\Classes\Pagination;
 use App\Classes\Request;
 use App\Classes\Session;
 use App\Classes\Validator;
 use App\Controllers\Basecontroller;
 use App\Models\Category;
+use App\Models\SubCategory;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 
@@ -18,15 +20,26 @@ class ProductCategoriescontroller extends Basecontroller
 {
 	
 	/**
-	 * Show all the product categories of application
+     * Paginated Categories.
+     *
+     * @var Illuminate\Pagination\LengthAwarePaginator
+     */
+    protected $categories;
+
+    /**
+	 * Instantiate the controller
 	 *
 	 * @return Illuminate\Pagination\LengthAwarePaginator
 	 * 
 	 **/
-	public function index($perPage)
+	public function __construct()
 	{
+		// Inject Pagination container
+		new Pagination;
+
 		//Get the paginated categories result
-		return $categories = Category::paginate($perPage);
+		$this->categories = Category::paginate(10, ['*'], 'p1');
+
 	}
 
 	/**
@@ -58,14 +71,19 @@ class ProductCategoriescontroller extends Basecontroller
 			exit();
 		}
 
-		// Get the Record to be deleted
-		$record = Category::where('id', $id)->first();
+		// Get the Category to be deleted
+		$category = Category::find($id);
 		
-		// Delete the Product category
-		Category::destroy($id);
+		// Implement cascade Delete
+		
+		// Delete SubCategories associated with this Category
+		$category->subcategories()->delete();
+
+		// Delete the Category
+		$category->delete();
 
 		//Add message to session;
-		Session::setValueFor('success', "Record '{$record->name}' deleted successfully");
+		Session::setValueFor('success', "Record '{$category->name}' deleted successfully");
 					
 		echo json_encode(['success' => 'Record deleted successfully']);
 
@@ -135,8 +153,8 @@ class ProductCategoriescontroller extends Basecontroller
 	 */
 	public function show ()
 	{
-		return view('admin/products/categories', ['categories' => 
-												  $this->index(5)]);
+		return view('admin/products/categories', ['categories' 	  => 
+												  				$this->categories]	  );
 	}
 
 	/**
@@ -167,7 +185,8 @@ class ProductCategoriescontroller extends Basecontroller
 
 		if ($validator->fails()) {
 			
-			return view('admin/products/categories', ['categories' => $this->index(5),
+			return view('admin/products/categories', ['categories' => 
+													  			$this->categories,
 										 		  	  'errors'  => $validator->errors()]);
 		}
 
@@ -176,8 +195,12 @@ class ProductCategoriescontroller extends Basecontroller
 						'name' => $request->name,
 						'slug' => slug($request->name) ]);
 
-		return view('admin/products/categories', ['categories' => $this->index(5),
-										 		  'success'  => 'Category created']);		
+		// Update the paginated result
+		$this->categories = Category::paginate(10, ['*'], 'p1');
+
+		return view('admin/products/categories', ['categories' => 
+												  			$this->categories,
+												  'success'  => 'Category created']);		
 	}
 }
 

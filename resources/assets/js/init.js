@@ -13,6 +13,7 @@
 			case 'adminCategories'	:
 										SITE.admin.update();
 										SITE.admin.delete();
+										SITE.admin.create();
 										break;
 			default					: 
 										//do nothing

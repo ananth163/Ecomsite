@@ -23188,9 +23188,9 @@ module.exports = g;
 
 /***/ }),
 
-/***/ "./resources/assets/js/admin/delete.js":
+/***/ "./resources/assets/js/admin/create.js":
 /*!*********************************************!*\
-  !*** ./resources/assets/js/admin/delete.js ***!
+  !*** ./resources/assets/js/admin/create.js ***!
   \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -23198,21 +23198,32 @@ module.exports = g;
 (function () {
   'use strict';
 
-  SITE.admin["delete"] = function () {
-    // Get Category values
-    $('.delete-category').on('click', function (event) {
+  SITE.admin.create = function () {
+    // Update Category values
+    $('.create-subcategory').on('click', function (event) {
       var token = $(this).data('token');
       var id = $(this).attr('id');
+      var name = $('#create-' + id).val();
       $.ajax({
         type: 'POST',
-        url: '/admin/products/categories/' + id + '/delete',
+        url: '/admin/products/subcategories/' + id + '/create',
         data: {
           'token': token,
-          'id': id
+          'name': name,
+          'category_id': id
         },
         success: function success(data) {
           if (data.includes("success")) {
-            window.location.href = '/admin/products/categories';
+            var response = JSON.parse(data); // Reset input field
+
+            $('#create-' + id).val(null); // Display success message
+
+            $(".notification").css("display", 'block').removeClass('alert').addClass('success').delay(4000).slideUp(300).html(response.success); // Update SubCategories
+            // Get Subcategories for given Category_id
+
+            $.ajax('/admin/products/subcategories/' + id).done(function (content) {
+              $("#category-" + id).html(content);
+            });
           }
         },
         error: function error(request) {
@@ -23233,6 +23244,81 @@ module.exports = g;
 
 /***/ }),
 
+/***/ "./resources/assets/js/admin/delete.js":
+/*!*********************************************!*\
+  !*** ./resources/assets/js/admin/delete.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function () {
+  'use strict';
+
+  SITE.admin["delete"] = function () {
+    // Delete Category 
+    $('.delete-category').on('click', function (event) {
+      var token = $(this).data('token');
+      var id = $(this).attr('id');
+      $.ajax({
+        type: 'POST',
+        url: '/admin/products/categories/' + id + '/delete',
+        data: {
+          'token': token,
+          'id': id
+        },
+        success: function success(data) {
+          if (data.includes("success")) {
+            window.location.href = '/admin/products/categories';
+          }
+        }
+      });
+      event.preventDefault();
+    }); // Delete Subcategory
+
+    $('.reveal-update').on('click', '.delete-subCategory', function (event) {
+      var id = $(this).attr('id').substring(7);
+      var token = $(this).data('token');
+      var category_id = $(this).data('categoryid');
+      console.log(id);
+      $.ajax({
+        type: 'POST',
+        url: '/admin/products/subcategories/' + id + '/delete',
+        data: {
+          'token': token,
+          'id': id
+        },
+        success: function success(data) {
+          if (data.includes("success")) {
+            //$("#subCategory-" + id).empty();
+            $(".notification").css("display", 'block').removeClass('alert').addClass('success').delay(2000).slideUp(300).html("Record Deleted Successfully"); //Update SubCategories
+            // Get Subcategories for given Category_id
+
+            $.ajax('/admin/products/subcategories/' + category_id).done(function (content) {
+              $("#category-" + category_id).html(content);
+            });
+            return false;
+          }
+        },
+        error: function error(request) {
+          var errors = JSON.parse(request.responseText);
+          var ul = document.createElement('ul');
+          $.each(errors, function (key, value) {
+            var li = document.createElement('li');
+            li.appendChild(document.createTextNode(value));
+            ul.appendChild(li);
+          });
+          $(".notification").css("display", 'block').addClass('alert').delay(4000).slideUp(300).html(ul);
+        }
+      }); //var elem = new Foundation.Tooltip(element, options);
+      //$('#delete-' + id).foundation(); 			
+
+      event.preventDefault();
+    });
+  };
+})();
+
+/***/ }),
+
 /***/ "./resources/assets/js/admin/update.js":
 /*!*********************************************!*\
   !*** ./resources/assets/js/admin/update.js ***!
@@ -23244,11 +23330,11 @@ module.exports = g;
   'use strict';
 
   SITE.admin.update = function () {
-    // Get Category values
+    // Update and Save Category values
     $('.update-category').on('click', function (event) {
       var token = $(this).data('token');
       var id = $(this).attr('id');
-      var name = $('#item-name-' + id).val();
+      var name = $('#updateitem-name-' + id).val();
       $.ajax({
         type: 'POST',
         url: '/admin/products/categories/' + id + '/edit',
@@ -23271,6 +23357,76 @@ module.exports = g;
             ul.appendChild(li);
           });
           $(".notification").css("display", 'block').addClass('alert').delay(4000).slideUp(300).html(ul);
+        }
+      });
+      event.preventDefault();
+    }); // Load SubCategories
+
+    $('.load-category').on('click', function (event) {
+      event.preventDefault();
+      var id = $(this).attr('id'); // Get Subcategories for given Category_id
+
+      $.ajax('/admin/products/subcategories/' + id).done(function (content) {
+        $("#category-" + id).html(content);
+        $('#updateitem-' + id).foundation('open');
+      });
+    }); //Paginate Subcategories
+
+    $('.reveal-update').on('click', '.pagination a', function (event) {
+      event.preventDefault(); //var page = $(this).attr('href').split('p2=')[1];
+
+      var page = $(this).attr('href');
+      $.ajax({
+        //url 	: '/admin/products/subcategories/' + id + '?p2=' + page	
+        url: page
+      }).done(function (data) {
+        $('.reveal-subCategories').html(data);
+      });
+    }); // Update Subcategory name
+
+    $('.reveal-update').on('click', '.update-subCategory', function (event) {
+      var id = $(this).attr('id').substring(5);
+      var content = $('#subCategoryName-' + id).html();
+      $('#subCategoryName-' + id).html("<input id='input-" + id + "'type='text' value='" + content + "'></input>");
+      $('#edit-' + id).hide();
+      $('#delete-' + id).hide();
+      $('#save-' + id).show();
+      event.preventDefault();
+    }); //Save Subcategory values
+
+    $('.reveal-subCategories').on('click', '.save', function (event) {
+      var id = $(this).attr('id').substring(5);
+      var token = $(this).data('token');
+      var name = $('#input-' + id).val();
+      var old_category_id = $('#subCategoryGroup-' + id).data('category');
+      var category_id = $('#subCategoryGroup-' + id).val();
+      $.ajax({
+        type: 'POST',
+        url: '/admin/products/subcategories/' + id + '/edit',
+        data: {
+          'token': token,
+          'name': name,
+          'category_id': category_id
+        },
+        success: function success(data) {
+          if (old_category_id != category_id) {
+            $("#subCategory-" + id).empty();
+            $(".notification").css("display", 'block').removeClass('alert').addClass('success').delay(2000).slideUp(300).html("Record Updated Successfully");
+            return false;
+          }
+
+          $("#subCategory-" + id).html(data);
+          $(".notification").css("display", 'block').removeClass('alert').addClass('success').delay(2000).slideUp(300).html("Record Updated Successfully");
+        },
+        error: function error(request) {
+          var errors = JSON.parse(request.responseText);
+          var ul = document.createElement('ul');
+          $.each(errors, function (key, value) {
+            var li = document.createElement('li');
+            li.appendChild(document.createTextNode(value));
+            ul.appendChild(li);
+          });
+          $(".notification").css("display", 'block').addClass('alert').delay(2000).slideUp(300).html(ul);
         }
       });
       event.preventDefault();
@@ -23302,6 +23458,8 @@ __webpack_require__(/*! ../../assets/js/admin/update */ "./resources/assets/js/a
 
 __webpack_require__(/*! ../../assets/js/admin/delete */ "./resources/assets/js/admin/delete.js");
 
+__webpack_require__(/*! ../../assets/js/admin/create */ "./resources/assets/js/admin/create.js");
+
 __webpack_require__(/*! ../../assets/js/init */ "./resources/assets/js/init.js");
 
 /***/ }),
@@ -23325,6 +23483,7 @@ __webpack_require__(/*! ../../assets/js/init */ "./resources/assets/js/init.js")
       case 'adminCategories':
         SITE.admin.update();
         SITE.admin["delete"]();
+        SITE.admin.create();
         break;
 
       default: //do nothing

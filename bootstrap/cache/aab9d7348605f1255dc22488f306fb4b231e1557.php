@@ -23,7 +23,8 @@
                     <?php if($page == $paginator->currentPage()): ?>
                         <li class="current"><span class="show-for-sr"><?php echo e($page); ?></span><?php echo e($page); ?></li>
                     <?php else: ?>
-                        <li><a href="<?php echo e($url); ?>"><?php echo e($page); ?></a></li>
+                        <li><a href="<?php echo e($url); ?>">
+                        <?php echo e($page); ?></a></li>
                     <?php endif; ?>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             <?php endif; ?>
@@ -37,4 +38,5 @@
         <?php endif; ?>
     </ul>
 </nav>
+<?php else: ?>
 <?php endif; ?><?php /**PATH D:\Ecomsite\resources\views/pagination/categories.blade.php ENDPATH**/ ?>

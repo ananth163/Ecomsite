@@ -75,7 +75,7 @@ class Mail {
 
     	if ($environment == 'local') {
     		// Enable verbose debug output
-    		$this->mail->SMTPDebug = SMTP::DEBUG_SERVER; 
+    		//$this->mail->SMTPDebug = SMTP::DEBUG_SERVER; 
 
     		// Workaround for SSL connection failure in local environment
     		$this->mail->SMTPOptions = array(
