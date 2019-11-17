@@ -7743,7 +7743,7 @@ html.is-reveal-open body {
   background-color: #1c2b39;
 }
 
-.nav .h3 {
+.nav h3 {
   color: #ffffff;
   font-size: 1.5rem;
   text-align: center;
@@ -7793,6 +7793,22 @@ html.is-reveal-open body {
 
 .reveal-update h2 {
   font-size: 1rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 0;
+  margin-left: 1rem;
+  font-weight: 500;
+}
+
+hr {
+  margin: 0 0 1rem 1rem;
+  clear: both;
+  display: block;
+  width: 84%;
+  height: 1px;
 }
 
 .reveal-delete {

@@ -24,4 +24,18 @@ $router->map( 'POST', '/admin/products/subcategories/[i:id]/edit',
 $router->map( 'POST', '/admin/products/subcategories/[i:id]/delete',
                       'App\Controllers\Admin\SubCategoriescontroller@delete', 'delete_sub_categories');
 
+// Products management
+$router->map( 'GET', '/admin/products/create',
+                     'App\Controllers\Admin\Productscontroller@showForm', 'show_form');
+$router->map( 'POST', '/admin/products/create',
+                      'App\Controllers\Admin\Productscontroller@store', 'create_products');
+$router->map( 'GET', '/admin/products/manage_inventory',
+                     'App\Controllers\Admin\Productscontroller@show', 'show_products');
+$router->map( 'GET', '/admin/products/[i:id]/edit',
+                      'App\Controllers\Admin\Productscontroller@showForm', 'show_editForm');
+$router->map( 'POST', '/admin/products/[i:id]/edit',
+                      'App\Controllers\Admin\Productscontroller@edit', 'update_products');
+$router->map( 'POST', '/admin/products/[i:id]/delete',
+                      'App\Controllers\Admin\Productscontroller@delete', 'delete_products');
+
  ?>

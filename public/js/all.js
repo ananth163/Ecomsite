@@ -23199,7 +23199,7 @@ module.exports = g;
   'use strict';
 
   SITE.admin.create = function () {
-    // Update Category values
+    // Create SubCategory
     $('.create-subcategory').on('click', function (event) {
       var token = $(this).data('token');
       var id = $(this).attr('id');
@@ -23270,6 +23270,16 @@ module.exports = g;
           if (data.includes("success")) {
             window.location.href = '/admin/products/categories';
           }
+        },
+        error: function error(request) {
+          var errors = JSON.parse(request.responseText);
+          var ul = document.createElement('ul');
+          $.each(errors, function (key, value) {
+            var li = document.createElement('li');
+            li.appendChild(document.createTextNode(value));
+            ul.appendChild(li);
+          });
+          $(".notification").css("display", 'block').addClass('alert').delay(4000).slideUp(300).html(ul);
         }
       });
       event.preventDefault();
@@ -23313,6 +23323,74 @@ module.exports = g;
       //$('#delete-' + id).foundation(); 			
 
       event.preventDefault();
+    }); // Delete Product 
+
+    $('.delete-product').on('click', function (event) {
+      var token = $(this).data('token');
+      var id = $(this).attr('id');
+      $.ajax({
+        type: 'POST',
+        url: '/admin/products/' + id + '/delete',
+        data: {
+          'token': token,
+          'id': id
+        },
+        success: function success(data) {
+          if (data.includes("success")) {
+            window.location.href = '/admin/products/manage_inventory';
+          }
+        },
+        error: function error(request) {
+          var errors = JSON.parse(request.responseText);
+          var ul = document.createElement('ul');
+          $.each(errors, function (key, value) {
+            var li = document.createElement('li');
+            li.appendChild(document.createTextNode(value));
+            ul.appendChild(li);
+          });
+          $(".notification").css("display", 'block').addClass('alert').delay(4000).slideUp(300).html(ul);
+        }
+      });
+      event.preventDefault();
+    });
+  };
+})();
+
+/***/ }),
+
+/***/ "./resources/assets/js/admin/events.js":
+/*!*********************************************!*\
+  !*** ./resources/assets/js/admin/events.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function () {
+  'use strict';
+
+  SITE.admin.changeEvent = function () {
+    $('#product-category').on('change', function () {
+      var category_id = $('#product-category' + ' option:selected').val();
+      $('#product-subcategory').html('Select Subcategory'); // Get Subcategories for given Category_id
+
+      $.ajax({
+        type: 'GET',
+        url: '/admin/products/subcategories/' + category_id,
+        data: {
+          'selected': true
+        },
+        success: function success(content) {
+          var subCategories = JSON.parse(content);
+
+          if (subCategories.length) {
+            $.each(subCategories, function (key, value) {
+              $('#product-subcategory').append('<option value="' + value.id + '"> ' + value.name + '</option>');
+            });
+          } else {
+            $('#product-subcategory').append('<option value=""> No SubCategories</option>');
+          }
+        }
+      });
     });
   };
 })();
@@ -23454,6 +23532,8 @@ __webpack_require__(/*! slick-carousel/slick/slick.min */ "./node_modules/slick-
 
 __webpack_require__(/*! ../../assets/js/site */ "./resources/assets/js/site.js");
 
+__webpack_require__(/*! ../../assets/js/admin/events */ "./resources/assets/js/admin/events.js");
+
 __webpack_require__(/*! ../../assets/js/admin/update */ "./resources/assets/js/admin/update.js");
 
 __webpack_require__(/*! ../../assets/js/admin/delete */ "./resources/assets/js/admin/delete.js");
@@ -23478,6 +23558,11 @@ __webpack_require__(/*! ../../assets/js/init */ "./resources/assets/js/init.js")
   $(document).ready(function () {
     switch ($('body').data('pageid')) {
       case 'home':
+        break;
+
+      case 'adminProducts':
+        SITE.admin.changeEvent();
+        SITE.admin["delete"]();
         break;
 
       case 'adminCategories':

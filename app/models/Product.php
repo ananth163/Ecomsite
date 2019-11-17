@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Model for handling Categories
+ * Model for handling SubCategories
  */
-class Category extends Model
+class Product extends Model
 {
 	
 	use SoftDeletes;
@@ -18,7 +18,8 @@ class Category extends Model
      *
      * @var array
      */
-	protected $fillable = ['name', 'slug'];
+	protected $fillable = ['name', 'price', 'description', 'quantity',
+                           'category_id', 'sub_category_id', 'image_path'];
 
 	/**
      * Indicates if the model should be timestamped.
@@ -35,20 +36,21 @@ class Category extends Model
     protected $dates = ['deleted_at'];
 
     /**
-     * Get the subcategories for the product category.
+     * Get the Cateogry that owns the Product.
      */
-    public function subcategories()
+    public function category()
     {
-        return $this->hasMany('App\Models\SubCategory');
+        return $this->belongsTo('App\Models\Category');
     }
 
     /**
-     * Get the products for the product category.
+     * Get the SubCateogry that owns the Product.
      */
-    public function products()
+    public function subCategory()
     {
-        return $this->hasMany('App\Models\Product');
+        return $this->belongsTo('App\Models\SubCategory');
     }
+    
 }
 
 

@@ -4,7 +4,7 @@
 
 	SITE.admin.create = function(){
 
-		// Update Category values
+		// Create SubCategory
 		$('.create-subcategory').on('click', function(event){
 
 			var token = $(this).data('token');

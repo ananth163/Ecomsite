@@ -40,7 +40,7 @@ class Request
         }
 
         if (count($_FILES) > 0) {
-            $result['FILES'] = $_FILES;
+            $result['file'] = $_FILES;
         }
 
         return json_decode(json_encode($result), $fetchMode);
@@ -89,6 +89,19 @@ class Request
     public static function query ( $key)
     {
         return $_GET[$key] ?? null;
+    }
+
+    /**
+     * Get the POST input
+     *
+     * @param $key
+     *
+     * @return $value Returns the value of input
+     *
+     **/
+    public static function input ( $key)
+    {
+        return $_POST[$key] ?? null;
     }
 
     /**

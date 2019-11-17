@@ -7,7 +7,8 @@
 @section('content')
 	<div class="category">
 		<div class="grid-x">
-			<h3>Product Categories</h3>
+			<h2>Product Categories</h2>
+			<hr />
 		</div>
 		@include('admin.includes.messages')
 		<div class="grid-x grid-padding-x">
@@ -21,7 +22,7 @@
 			        </div>
 				</form>
 			</div>
-			<div class="cell small-12 medium-5">
+			<div class="cell small-12 medium-4">
 				<form action="/admin/products/categories" method="post">
 			        <div class="input-group">
 			          <input type="text" class="input-group-field" name="name" placeholder="Category Name">
@@ -35,7 +36,7 @@
 		</div>
 		<div class="grid-x grid-padding-x">
 			@if(count($categories) == 0)
-				<h4>No Categories available to display</h4>
+				<h2>No Categories available to display</h2>
 			@else
 				<div class="cell small-12 medium-10">
 					<table class="hover">
@@ -59,8 +60,9 @@
   										@include('admin.includes.createmodal', ['id' => $category->id, 
   																				'name' => $category->name] )
   										@include('admin.includes.updatemodal')
-  										@include('admin.includes.deletemodal', ['id' => $category->id, 
-  																				'name' => $category->name] )
+  										@include('admin.includes.deletemodal', ['id'   => $category->id, 
+  																				'name' => $category->name,
+  																				'item' => 'category'] )
   									</td>
   								</tr>  								
   							@endforeach

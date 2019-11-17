@@ -6,7 +6,7 @@
   <div id="content">
         <p>Clicking yes will delete {{$name}}.<br>  Seriously, have you thought this through?</p>
  
-        <a class="button success delete-category" id="{{$id}}" 
+        <a class="button success delete-{{$item}}" id="{{$id}}" 
         data-token="{{App\Classes\CSRFHandler::getToken()}}"><i class="fa fa-check-circle" aria-hidden="true">
         	
         </i>Yes, do it now!</a>

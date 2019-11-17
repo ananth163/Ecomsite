@@ -27,12 +27,13 @@ class Validator {
     'alpha_dash' 	=> 'The :attribute may only contain letters, numbers, dashes and underscores.',
     'alpha_num' 	=> 'The :attribute may only contain letters and numbers.',
     'email' 		=> 'The :attribute must be a valid email address.',
-    'max' 			=> 'The :attribute may not be greater than :max characters.',    
-    'min' 			=> 'The :attribute must be at least :min characters.',
+    'max' 			=> 'The :attribute may not be greater than :max',    
+    'min' 			=> 'The :attribute must be at least :min',
     'mixed' 		=> 'The :attribute contains invalid characters',        
     'numeric' 		=> 'The :attribute must be a number.',
     'required' 		=> 'The :attribute field is required.',
-    'unique' 		=> 'The :attribute has already been taken.'
+    'unique' 		=> 'The :attribute has already been taken.',
+    'image'         => 'Upload valid images. Only PNG and JPEG are allowed.'
     ];
 
     /**
@@ -117,11 +118,19 @@ class Validator {
     	// We will loop through each attribute and validate
         // it against the provided rules
         //['name' => ['unique:categories','min:5','max:25','email']]
-        foreach ($this->rules as $attribute => $rules) {
+        foreach ($this->rules as $attribute => $rules) {        	
+
+            foreach ($rules as $rule) {
         	
-        	foreach ($rules as $rule) {
-        	
-        		$this->validateAttribute($attribute, $rule);
+        		// Check if attribute is a file
+                if (in_array('file', $rules)) {
+                
+                    $this->validateFile($attribute, $rule);
+
+                } else {
+
+                    $this->validateAttribute($attribute, $rule);
+                }                
         	}
         }
 
@@ -132,6 +141,29 @@ class Validator {
 
         return true;
 
+    }
+
+    /**
+     * Validates the file against a rule.
+     *
+     * @param  string  $attribute
+     * @param  string  $rule
+     * @return void
+     */
+    protected function validateFile($attribute, $rule)
+    {
+        // 'name' , 'unique:categories' or 'email'
+        // 'product_image' , 'file|image|min:250|max:2048'
+        list($rule, $parameter) = array_pad(explode(':', $rule), 2, null);
+
+        $valid = call_user_func([$this, $rule],
+                                $attribute,
+                                $this->data[$attribute],
+                                $parameter);
+        if (!$valid) {
+            
+            $this->addFailure($attribute, $rule, $parameter, true);
+        }
     }
 
     /**
@@ -149,7 +181,8 @@ class Validator {
         $valid = call_user_func([$this, $rule],
                 				$attribute,
                 				$this->data[$attribute],
-                				$parameter);
+                				$parameter);        
+
         if (!$valid) {
         	
         	$this->addFailure($attribute, $rule, $parameter);
@@ -164,13 +197,58 @@ class Validator {
      * @param  string  $parameter
      * @return void
      */
-    protected function addFailure($attribute, $rule, $parameter = '')
+    protected function addFailure($attribute, $rule, $parameter = '', $is_file = false)
     {
     	$this->failedRules[$attribute][$rule] = $parameter;
 
-    	$this->messages[] = str_replace([':attribute', ':min', ':max'],
-    	                                [$attribute, $parameter, $parameter],
-    	                                $this->messageTemplate[$rule]);
+    	if ($is_file)
+        {            
+            $this->messages[] = str_replace([':attribute', ':min', ':max'],
+                                        [$attribute, "{$this->convertBytes($parameter)} size.",
+                                                     "{$this->convertBytes($parameter)} size."],
+                                        $this->messageTemplate[$rule]);
+        } else
+        {
+            $this->messages[] = str_replace([':attribute', ':min', ':max'],
+                                        [$attribute, "{$parameter} characters.", "{$parameter} characters."],
+                                        $this->messageTemplate[$rule]);
+        }
+        
+    }
+
+    /**
+     * Convert bytes to Kb/Mb
+     *
+     * @param  string/int  $value in Bytes
+     * 
+     * @return value in Kb/Mb
+     */
+    protected function convertBytes($value)
+    {
+        if ( (int) $value < 1024) {
+            
+            return "{$value} Bytes";
+        }
+
+        if ( (int) $value < 1048576) {
+            
+            $valueKB = (int) $value/1024;
+
+            return "{$valueKB} KB";
+        }
+
+        if ( (int) $value < 1073741824) {
+            
+            $valueMB = (int) $value/1048576;
+
+            return "{$valueKB} MB";
+        }
+        
+    }
+
+    protected function convertToMb($value)
+    {
+        return (int) $value/1048576;
     }
 
     /**
@@ -214,6 +292,36 @@ class Validator {
 
 
 	/**
+     * Checks if the file is uploaded
+     *
+     **/
+    protected function file($column, $value, $policy)
+    {
+        return true;
+
+        //return file_exists($value->tmp_name);
+    }
+
+    /**
+     * Checks if the file is image
+     *
+     **/
+    protected function image($column, $value, $policy)
+    {
+        $allowed_image_extension = ['png', 'jpg', 'jpeg'];
+        
+        // If file doesn't exist, prevent multiple errors
+        if (! file_exists($value->tmp_name)) {
+            return true;
+        }
+
+        // Get image file extension
+        $file_extension = pathinfo($value->name, PATHINFO_EXTENSION);
+
+        return in_array($file_extension, $allowed_image_extension);
+    }
+
+    /**
 	 * Checks if the value is unique
 	 *
 	 **/
@@ -233,30 +341,66 @@ class Validator {
 	 **/
 	protected function required($column, $value, $policy)
 	{
-		return !empty(trim($value));
+		// If it's a file, check if file exist
+        if (is_object($value)) {
+            
+            return file_exists($value->tmp_name);
+        }        
+
+        return !empty(trim($value));
 	}
 
 	/**
 	 * Check if string length >= minimum
+     * or File size >= minimum
 	 *
 	 **/
 	protected function min($column, $value, $policy)
 	{
-		if (!is_string($value)) {
-			return false;
+		// If it's a file, check size
+        if (is_object($value)) {
+			
+            // If file doesn't exist, prevent multiple errors
+            if (! file_exists($value->tmp_name)) {
+            
+                return true;
+            }
+
+            return $value->size >= $policy;
 		}
+
+        if(empty(trim($value)))
+        {
+            return true;
+        }
+
 		return strlen($value) >= $policy;
 	}
 
 	/**
 	 * Check if string length <= maximum
+     * or File size <= maximum
 	 *
 	 **/
 	protected function max($column, $value, $policy)
 	{
-		if (!is_string($value)) {
-			return false;
-		}
+		// If it's a file, check size
+        if (is_object($value)) {
+            
+            // If file doesn't exist, prevent multiple errors
+            if (! file_exists($value->tmp_name)) {
+            
+                return true;
+            }
+
+            return $value->size <= $policy;
+        }
+
+        if(empty(trim($value)))
+        {
+            return true;
+        }
+
 		return strlen($value) <= $policy;
 	}
 
@@ -283,7 +427,7 @@ class Validator {
 			return true;
 		}
 
-		if(!preg_match('/^[a-zA-Z0-9.,_~@&%\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:\-\#]+$/', $value))
+		if(!preg_match('/^[a-zA-Z0-9.,_~@&%\\s\+\*\?\[\^\]\$\(\)\{\}\=\!\<\>\|\:\-\#]+$/', $value))
 		{
 			return false;
 		}
@@ -359,7 +503,7 @@ class Validator {
 			return true;
 		}
 
-		if(!preg_match('/^[0-9]+$/', $value))
+		if(!preg_match('/^[0-9.,]+$/', $value))
 		{
 			return false;
 		}

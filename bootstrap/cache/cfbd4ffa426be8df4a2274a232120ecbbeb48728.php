@@ -5,7 +5,8 @@
 <?php $__env->startSection('content'); ?>
 	<div class="category">
 		<div class="grid-x">
-			<h3>Product Categories</h3>
+			<h2>Product Categories</h2>
+			<hr />
 		</div>
 		<?php echo $__env->make('admin.includes.messages', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 		<div class="grid-x grid-padding-x">
@@ -19,7 +20,7 @@
 			        </div>
 				</form>
 			</div>
-			<div class="cell small-12 medium-5">
+			<div class="cell small-12 medium-4">
 				<form action="/admin/products/categories" method="post">
 			        <div class="input-group">
 			          <input type="text" class="input-group-field" name="name" placeholder="Category Name">
@@ -33,7 +34,7 @@
 		</div>
 		<div class="grid-x grid-padding-x">
 			<?php if(count($categories) == 0): ?>
-				<h4>No Categories available to display</h4>
+				<h2>No Categories available to display</h2>
 			<?php else: ?>
 				<div class="cell small-12 medium-10">
 					<table class="hover">
@@ -57,8 +58,9 @@
   										<?php echo $__env->make('admin.includes.createmodal', ['id' => $category->id, 
   																				'name' => $category->name] , \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
   										<?php echo $__env->make('admin.includes.updatemodal', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-  										<?php echo $__env->make('admin.includes.deletemodal', ['id' => $category->id, 
-  																				'name' => $category->name] , \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+  										<?php echo $__env->make('admin.includes.deletemodal', ['id'   => $category->id, 
+  																				'name' => $category->name,
+  																				'item' => 'category'] , \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
   									</td>
   								</tr>  								
   							<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

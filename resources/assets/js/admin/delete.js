@@ -23,6 +23,25 @@
 							} 					
 							
 								},
+				error	: function(request){
+
+							var errors = JSON.parse(request.responseText);
+
+							var ul = document.createElement('ul');
+
+							$.each(errors, function(key, value){
+
+								var li = document.createElement('li');
+
+								li.appendChild(document.createTextNode(value));
+
+								ul.appendChild(li);
+							})
+
+							$(".notification").css("display", 'block').addClass('alert').delay(4000).slideUp(300)
+								.html(ul);
+
+								}
 
 			})
 			
@@ -91,6 +110,50 @@
 			//var elem = new Foundation.Tooltip(element, options);
 
 			//$('#delete-' + id).foundation(); 			
+			
+			event.preventDefault();
+		})
+
+		// Delete Product 
+		$('.delete-product').on('click', function(event){
+
+			var token = $(this).data('token');
+			var id 	  = $(this).attr('id');
+			
+			$.ajax({
+				type	: 'POST',
+				url		: '/admin/products/' + id + '/delete',
+				data	: { 'token' : token,
+							'id'	: id },
+				success : function(data){
+							
+							if(data.includes("success"))
+							{
+								window.location.href = '/admin/products/manage_inventory';
+							} 					
+							
+								},
+				error	: function(request){
+
+							var errors = JSON.parse(request.responseText);
+
+							var ul = document.createElement('ul');
+
+							$.each(errors, function(key, value){
+
+								var li = document.createElement('li');
+
+								li.appendChild(document.createTextNode(value));
+
+								ul.appendChild(li);
+							})
+
+							$(".notification").css("display", 'block').addClass('alert').delay(4000).slideUp(300)
+								.html(ul);
+
+								}
+
+			})
 			
 			event.preventDefault();
 		})

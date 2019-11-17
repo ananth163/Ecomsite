@@ -20,7 +20,7 @@ class Indexcontroller extends Basecontroller
 	public function show()
 	{
 
-		$subCategory = Category::find(32);
+		$subCategory = Category::find(1);
 
 		var_dump($subCategory->name);		
 

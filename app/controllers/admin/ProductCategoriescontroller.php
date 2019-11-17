@@ -167,8 +167,8 @@ class ProductCategoriescontroller extends Basecontroller
 	{
 		if (!Request::hasType('POST')) {
 			
-			//return view('errors/404');
-			echo "Invalid request";			
+			return view('errors/404');
+		
 		}
 
 		$request = Request::fetchType('POST');

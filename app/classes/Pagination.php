@@ -20,9 +20,9 @@ class Pagination {
 	{
 		LengthAwarePaginator::viewFactoryResolver(function () {
             
-            $views = ABSPATH . 'resources/views' ;
+            $views = BASE_PATH . '/resources/views' ;
 
-			$cache = ABSPATH . 'bootstrap/cache' ;
+			$cache = BASE_PATH . '/bootstrap/cache' ;
 
 			$blade = new Blade($views, $cache);
 		

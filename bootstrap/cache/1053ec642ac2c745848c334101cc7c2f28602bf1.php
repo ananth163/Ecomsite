@@ -6,7 +6,7 @@
   <div id="content">
         <p>Clicking yes will delete <?php echo e($name); ?>.<br>  Seriously, have you thought this through?</p>
  
-        <a class="button success delete-category" id="<?php echo e($id); ?>" 
+        <a class="button success delete-<?php echo e($item); ?>" id="<?php echo e($id); ?>" 
         data-token="<?php echo e(App\Classes\CSRFHandler::getToken()); ?>"><i class="fa fa-check-circle" aria-hidden="true">
         	
         </i>Yes, do it now!</a>

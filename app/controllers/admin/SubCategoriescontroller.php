@@ -170,8 +170,20 @@ class SubCategoriescontroller extends Basecontroller
 	public function show ($id)
 	{
 		//Get list of SubCategories for given category_id
-		$subCategories = SubCategory::where('category_id', $id)
-                                      ->paginate(3, ['*'], 'p2');
+		$subCategories = SubCategory::where('category_id', $id);
+
+        // If a category is selected, return list of Subcategories
+        $selected = Request::query('selected');
+
+        if (! empty($selected)) {
+        	
+        	echo json_encode($subCategories->get());
+
+        	exit();
+        }
+
+        // Paginate the result
+        $subCategories = $subCategories->paginate(3, ['*'], 'p2');
 		
 		return view('admin/products/subcategories', compact('subCategories'));
 	}

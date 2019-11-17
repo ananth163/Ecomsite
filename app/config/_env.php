@@ -2,9 +2,10 @@
 
 use Dotenv\Dotenv;
 
-define('BASE_PATH', realpath(__DIR__."/../../"));
-
-//require_once(BASE_PATH . '/vendor/autoload.php');
+/** Define BASE_PATH as this project's root directory */
+if ( ! defined( 'BASE_PATH' ) ) {
+	define('BASE_PATH', realpath(__DIR__."/../../"));
+}
 
 $dotenv = Dotenv::create(BASE_PATH);
 

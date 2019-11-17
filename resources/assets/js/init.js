@@ -10,6 +10,11 @@
 		{
 			case 'home'				:
 			 							break;
+			
+			case 'adminProducts'	: 	SITE.admin.changeEvent();
+										SITE.admin.delete();
+										break;
+
 			case 'adminCategories'	:
 										SITE.admin.update();
 										SITE.admin.delete();
