@@ -10,7 +10,7 @@
 				<h2>Manage Inventory</h2>
 				<hr />
 		</div>
-		@include('admin.includes.messages')
+		@include('includes.messages')
 		<div class="grid-x grid-padding-x">
 			<div class="cell small-12 medium-6">
 				<form action="" method="post">
@@ -76,7 +76,7 @@
   							@endforeach
   						</tbody>					
 					</table>
-					{{ $products->links('pagination.categories', 
+					{{ $products->links('pagination.pagination', 
 													['paginator' => $products]) }}
 				</div>
 				

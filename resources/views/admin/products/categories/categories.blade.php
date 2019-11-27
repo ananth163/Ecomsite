@@ -10,7 +10,7 @@
 			<h2>Product Categories</h2>
 			<hr />
 		</div>
-		@include('admin.includes.messages')
+		@include('includes.messages')
 		<div class="grid-x grid-padding-x">
 			<div class="cell small-12 medium-6">
 				<form action="" method="post">
@@ -57,18 +57,17 @@
   									<td>
   										<a class = "load-category" id="{{$category->id}}"><i class="fas fa-edit"></i></a>
   										<a data-open="deleteitem-{{$category->id}}"><i class="fas fa-trash"></i></a>
-  										@include('admin.includes.createmodal', ['id' => $category->id, 
-  																				'name' => $category->name] )
-  										@include('admin.includes.updatemodal')
-  										@include('admin.includes.deletemodal', ['id'   => $category->id, 
-  																				'name' => $category->name,
-  																				'item' => 'category'] )
+  										
+  										@include('admin.products.categories.updatecategory')
+  										@include('includes.deletemodal', ['id'   => $category->id, 
+  																		  'name' => $category->name,
+  																		  'item' => 'category'] )
   									</td>
   								</tr>  								
   							@endforeach
   						</tbody>					
 					</table>
-					{{ $categories->links('pagination.categories', 
+					{{ $categories->links('pagination.pagination', 
 													['paginator' => $categories]) }}
 				</div>
 				

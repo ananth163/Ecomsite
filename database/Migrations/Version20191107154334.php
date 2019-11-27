@@ -35,6 +35,7 @@ final class Version20191107154334 extends AbstractMigration
           category_id INT UNSIGNED,
           sub_category_id INT UNSIGNED,
           image_path VARCHAR(255),
+          featured BOOLEAN,
           created_at TIMESTAMP NULL DEFAULT NULL,
           updated_at TIMESTAMP NULL DEFAULT NULL,
           deleted_at TIMESTAMP NULL DEFAULT NULL

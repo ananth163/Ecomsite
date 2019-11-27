@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Railway:300,400,600);@charset "UTF-8";
+@charset "UTF-8";
 
 /**
  * Foundation for Sites by ZURB
@@ -5920,13 +5920,13 @@ a.thumbnail image {
 }
 
 .menu .is-active > a {
-  background: #1779ba;
-  color: #fefefe;
+  background: #2c3840;
+  color: #e6e6e6;
 }
 
 .menu .active > a {
-  background: #1779ba;
-  color: #fefefe;
+  background: #2c3840;
+  color: #e6e6e6;
 }
 
 .menu.align-left {
@@ -6159,7 +6159,7 @@ a.thumbnail image {
 
 .drilldown a {
   padding: 0.7rem 1rem;
-  background: #fefefe;
+  background: #1B1920;
 }
 
 .drilldown .is-drilldown-submenu {
@@ -6168,7 +6168,7 @@ a.thumbnail image {
   left: 100%;
   z-index: -1;
   width: 100%;
-  background: #fefefe;
+  background: #1B1920;
   transition: transform 0.15s linear;
 }
 
@@ -7255,7 +7255,7 @@ html.is-reveal-open body {
 
 .top-bar,
 .top-bar ul {
-  background-color: #e6e6e6;
+  background-color: #1B1920;
 }
 
 .top-bar input {
@@ -7776,6 +7776,73 @@ html.is-reveal-open body {
 .admin_title_bar .title-bar .title-bar-title {
   font-size: 1.5rem;
   color: #0a0a0a;
+}
+
+.navigation .logo {
+  background-image: url("/images/logo/logo.png");
+  width: 10rem;
+  height: 2.6rem;
+  display: block;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.navigation .menu > li {
+  color: #def0fc;
+}
+
+.navigation .menu > li a {
+  color: #def0fc;
+  text-decoration: none;
+}
+
+.navigation ul.menu.vertical.submenu {
+  padding-right: 0.5rem;
+  margin-top: 0.7rem;
+}
+
+.navigation ul.menu.vertical.submenu li {
+  border-bottom: 1px dotted #ffffff;
+}
+
+.navigation ul.menu.vertical.submenu li:last-of-type {
+  border-bottom: none;
+}
+
+@media screen and (max-width: 39.99875em) {
+  .no-js .top-bar {
+    display: none;
+  }
+}
+
+@media print, screen and (min-width: 40em) {
+  .no-js .title-bar {
+    display: none;
+  }
+}
+
+.home .hero {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.home .hero .hero-slider img {
+  width: 100% !important;
+}
+
+html,
+body {
+  font-size: 1rem;
+  line-height: 1.5;
+  padding: 0;
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+}
+
+.site-wrapper {
+  min-height: 100%;
+  position: relative;
 }
 
 .reveal-update {

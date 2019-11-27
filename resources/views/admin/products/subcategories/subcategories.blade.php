@@ -50,7 +50,7 @@
                 @endforeach
               </tbody>          
           </table>
-          {{ $subCategories->links('pagination.categories',
+          {{ $subCategories->links('pagination.pagination',
                                      ['paginator' => $subCategories]) }}
       </div>
   @endif

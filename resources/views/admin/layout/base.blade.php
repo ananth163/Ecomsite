@@ -9,7 +9,7 @@
 <body data-pageid="@yield('pageid')">
   
   <!-- Sidebar -->
-  @include('admin.includes.admin-sidebar')
+  @include('includes.admin-sidebar')
 
   <div class="off-canvas-content admin_title_bar" data-off-canvas-content>
     <!-- Your page content lives here -->

@@ -1,0 +1,61 @@
+$menu-background	: #1B1920;
+$logo-img-folder	: 'images/logo';
+
+.navigation{
+	
+	
+	.logo {
+
+		background-image	: url('/#{$logo-img-folder}/logo.png');
+		width				: 10rem;
+		height				: 2.6rem;
+		display				: block;
+		background-repeat	: no-repeat;
+		background-size		: cover;
+		background-position	: center center;
+
+	}
+
+	.menu > li {
+			
+		color 		: #def0fc;
+
+			a {
+				color 		: #def0fc;
+				text-decoration : none;
+
+			}
+
+		}
+
+	ul.menu.vertical{
+		&.submenu{
+			padding-right:  0.5rem;
+			margin-top:		0.7rem;
+
+			li{
+				border-bottom: 1px dotted #ffffff;
+
+				&:last-of-type{
+					border-bottom: none;
+				}
+			}
+		}
+	}
+
+}
+
+.no-js {
+  @include breakpoint(small only) {
+    .top-bar {
+      display: none;
+    }
+  }
+
+  @include breakpoint(medium) {
+    .title-bar {
+      display: none;
+    }
+  }
+}
+

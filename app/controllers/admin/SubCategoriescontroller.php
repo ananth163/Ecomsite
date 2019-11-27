@@ -155,7 +155,7 @@ class SubCategoriescontroller extends Basecontroller
 		// Get the Updated record
 		$subCategory = SubCategory::where('id', $id)->first();
 
-		return view('admin/includes/updatedSubCategory', compact('subCategory') );
+		return view('admin/products/subcategories/updatedSubCategory', compact('subCategory') );
 
 		exit();
 										 		  
@@ -185,7 +185,7 @@ class SubCategoriescontroller extends Basecontroller
         // Paginate the result
         $subCategories = $subCategories->paginate(3, ['*'], 'p2');
 		
-		return view('admin/products/subcategories', compact('subCategories'));
+		return view('admin/products/subcategories/subcategories', compact('subCategories'));
 	}
 
 	/**
@@ -221,7 +221,7 @@ class SubCategoriescontroller extends Basecontroller
 
 		//Validate the request
 		$validator = Validator::make($request, ['name' => 
-			                                       'required|unique:sub_categories|alpha']);
+			                                       'required|unique:sub_categories|mixed']);
 
 		if ($validator->fails()) {
 			

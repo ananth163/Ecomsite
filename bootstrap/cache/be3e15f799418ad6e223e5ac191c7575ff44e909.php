@@ -9,7 +9,7 @@
 <body data-pageid="<?php echo $__env->yieldContent('pageid'); ?>">
   
   <!-- Sidebar -->
-  <?php echo $__env->make('admin.includes.admin-sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+  <?php echo $__env->make('includes.admin-sidebar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
   <div class="off-canvas-content admin_title_bar" data-off-canvas-content>
     <!-- Your page content lives here -->

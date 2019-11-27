@@ -10,7 +10,7 @@
 					<h2>Add Inventory Item</h2> <hr />
 				</div>
 			</div>					
-			<?php echo $__env->make('admin.includes.messages', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+			<?php echo $__env->make('includes.messages', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 			<form enctype="multipart/form-data" method="post" action="/admin/products/create">
 					<div class="grid-x grid-padding-x">
 						<div class="cell small-12 medium-6">

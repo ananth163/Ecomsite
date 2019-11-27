@@ -153,8 +153,8 @@ class ProductCategoriescontroller extends Basecontroller
 	 */
 	public function show ()
 	{
-		return view('admin/products/categories', ['categories' 	  => 
-												  				$this->categories]	  );
+		return view('admin/products/categories/categories', ['categories' 	  => 
+												  				    $this->categories]	  );
 	}
 
 	/**
@@ -185,9 +185,10 @@ class ProductCategoriescontroller extends Basecontroller
 
 		if ($validator->fails()) {
 			
-			return view('admin/products/categories', ['categories' => 
-													  			$this->categories,
-										 		  	  'errors'  => $validator->errors()]);
+			return view('admin/products/categories/categories', ['categories' => 
+													  						$this->categories,
+										 		  	  			 'errors'  => 
+										 		  	  			 			$validator->errors()]);
 		}
 
 		// Store the Product category
@@ -198,9 +199,10 @@ class ProductCategoriescontroller extends Basecontroller
 		// Update the paginated result
 		$this->categories = Category::paginate(10, ['*'], 'p1');
 
-		return view('admin/products/categories', ['categories' => 
-												  			$this->categories,
-												  'success'  => 'Category created']);		
+		return view('admin/products/categories/categories', ['categories' => 
+												  						$this->categories,
+												  			 'success'  => 
+												  			 			'Category created']);		
 	}
 }
 

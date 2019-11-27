@@ -4,7 +4,8 @@
 
 	window.SITE = {
 		global: {},
-		admin: {}
+		admin: {},
+		home: {}
 	};
 
 })()

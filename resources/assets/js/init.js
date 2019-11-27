@@ -2,13 +2,14 @@
 
 	'use strict';
 
-	$(document).foundation();
+	$(document).foundation();	
 
 	$(document).ready(function() {
 		
 		switch($('body').data('pageid'))
 		{
-			case 'home'				:
+			case 'homepage'			: 	SITE.home.initCarousel();
+										SITE.home.products();
 			 							break;
 			
 			case 'adminProducts'	: 	SITE.admin.changeEvent();

@@ -12,7 +12,7 @@
 					<h2>Edit Inventory Item</h2> <hr />
 				</div>
 			</div>					
-			@include('admin.includes.messages')
+			@include('includes.messages')
 			<form enctype="multipart/form-data" method="post" action="/admin/products/{{$product->id}}/edit">
 					<div class="grid-x grid-padding-x">
 						<div class="cell small-12 medium-6">

@@ -8,7 +8,7 @@
 				<h2>Manage Inventory</h2>
 				<hr />
 		</div>
-		<?php echo $__env->make('admin.includes.messages', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+		<?php echo $__env->make('includes.messages', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 		<div class="grid-x grid-padding-x">
 			<div class="cell small-12 medium-6">
 				<form action="" method="post">
