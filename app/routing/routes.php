@@ -21,6 +21,9 @@ $router->map( 'POST', '/cart/delete', 'App\Controllers\Cartcontroller@delete', '
 // Demo page
 $router->map( 'GET', '/demo', 'App\Controllers\Democontroller@show', 'demopage');
 
+// map Auth routes
+require_once( __DIR__ . '/auth_routes.php');
+
 // map Admin routes
 require_once( __DIR__ . '/admin_routes.php');
 

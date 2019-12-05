@@ -18,6 +18,7 @@ require('../../assets/js/admin/create');
 require('../../assets/js/pages/slider');
 require('../../assets/js/pages/home_products');
 require('../../assets/js/pages/cart');
+require('../../assets/js/pages/login');
 require('../../assets/js/init');
 
 

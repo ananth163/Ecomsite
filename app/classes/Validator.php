@@ -322,7 +322,7 @@ class Validator {
     }
 
     /**
-	 * Checks if the value is unique
+	 * Checks if the given field matches the field under validation
 	 *
 	 **/
 	protected function unique($column, $value, $policy)
@@ -332,6 +332,29 @@ class Validator {
 		}
 		return Capsule::table($policy)->where($column, $value)->doesntExist();
 	}
+
+    /**
+     * Update error message template for given rule
+     * column:password2, value:error, policy:'same@Passwords do not match'
+     *
+     **/
+    protected function error($column, $value, $policy)
+    {
+        list($rule, $errorMessage) = array_pad(explode('@', $policy), 2, null);
+
+        $this->messageTemplate[$rule] = $errorMessage;
+        
+        return true;
+    }
+
+    /**
+     * Checks if the value is unique
+     *
+     **/
+    protected function same($column, $value, $policy)
+    {
+        return $value == $this->data[$policy];
+    }
 
 	/**
 	 * Check if value is not empty
@@ -410,9 +433,14 @@ class Validator {
 	 **/
 	protected function email($column, $value, $policy)
 	{
-		if (!is_string($value)) {
+		if (empty(trim($value))) {
+            return true;
+        }
+
+        if (!is_string($value)) {
 			return false;
 		}
+        
 		return filter_var($value, FILTER_VALIDATE_EMAIL);
 	}
 

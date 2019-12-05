@@ -1,5 +1,7 @@
 <?php 
 
+use App\Classes\Session;
+use App\Models\User;
 use Philo\Blade\Blade;
 
 /**
@@ -69,6 +71,33 @@ function view( $path = '', $data = [] )
  	$string = trim($string, '-');
 
  	return $string;
+ }
+
+ /**
+  * Checks if User authenticated
+  *
+  * @return bool
+  *
+  **/
+ function isAuthenticated( )
+ {
+    return Session::hasKey('SESSION_USER_ID');
+ }
+
+ /**
+  * Get the logged In User details
+  *
+  * @return User Collection
+  *
+  **/
+ function getUser( )
+ {
+    if (!isAuthenticated()) {
+      
+      return '';
+    }
+
+    return User::findorFail(Session::getValueFor('SESSION_USER_ID'));
  }
 
  

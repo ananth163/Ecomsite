@@ -66,6 +66,18 @@ class Session {
     }
 
     /**
+	 * Clear Session data
+	 *
+     */
+    public static function clear()
+    {
+        session_unset();
+
+        session_destroy();
+
+    }
+
+    /**
 	 * Check for Session key
 	 *
 	 * @param string $key

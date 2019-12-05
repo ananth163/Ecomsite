@@ -30,9 +30,13 @@
         				@endforeach
         			</ul>
       			</li>
-      			<li><a href="#">SignIn</a></li>
-      			<li><a href="#">Register</a></li>
-      			<li><a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;Cart</a></li>      			
+            <li><a href="/cart" class="cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;Cart</a></li>
+      			@if(isAuthenticated())
+              <li><a href="/logout">Sign Out</a></li>
+            @else
+              <li><a href="/login">SignIn</a></li>
+              <li><a href="/sign-up">Register</a></li>
+            @endif      			      			
     		</ul>
 		</div>
 	</div>
@@ -67,9 +71,13 @@
   	 		</div>
   	 		<div class="top-bar-right">
       			<ul class="dropdown menu" data-dropdown-menu>
-        				<li class="menu-text">Username</li>
-        				<li><a href="#">SignIn</a></li>
-        				<li><a href="#">Register</a></li>
+                @if(isAuthenticated())
+        				  <li class="menu-text">{{getUser()->username}}</li>
+                  <li><a href="/logout">Sign Out</a></li>
+                @else
+        				  <li><a href="/login">SignIn</a></li>
+        				  <li><a href="/sign-up">Register</a></li>
+                @endif
         				<li><a href="/cart" class="cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;Cart</a></li>
       			</ul>
   	 		</div>

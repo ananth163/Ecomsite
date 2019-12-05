@@ -25312,6 +25312,8 @@ __webpack_require__(/*! ../../assets/js/pages/home_products */ "./resources/asse
 
 __webpack_require__(/*! ../../assets/js/pages/cart */ "./resources/assets/js/pages/cart.js");
 
+__webpack_require__(/*! ../../assets/js/pages/login */ "./resources/assets/js/pages/login.js");
+
 __webpack_require__(/*! ../../assets/js/init */ "./resources/assets/js/init.js");
 
 /***/ }),
@@ -25340,6 +25342,10 @@ __webpack_require__(/*! ../../assets/js/init */ "./resources/assets/js/init.js")
 
       case 'cart':
         SITE.home.cart();
+        break;
+
+      case 'login':
+        SITE.home.login();
         break;
 
       case 'adminProducts':
@@ -25535,6 +25541,26 @@ __webpack_require__(/*! ../../assets/js/init */ "./resources/assets/js/init.js")
           }
         });
       }
+    });
+  };
+})();
+
+/***/ }),
+
+/***/ "./resources/assets/js/pages/login.js":
+/*!********************************************!*\
+  !*** ./resources/assets/js/pages/login.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function () {
+  'use strict';
+
+  SITE.home.login = function () {
+    // Show Password when checked
+    $('#show-password').click(function () {
+      $(this).is(':checked') ? $('#pwd-input').attr('type', 'text') : $('#pwd-input').attr('type', 'password');
     });
   };
 })();
