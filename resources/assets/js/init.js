@@ -12,6 +12,12 @@
 										SITE.home.products();
 			 							break;
 			
+			case 'products'			: 	SITE.home.products();
+			 							break;
+
+			case 'cart'				: 	SITE.home.cart();
+			 							break;
+
 			case 'adminProducts'	: 	SITE.admin.changeEvent();
 										SITE.admin.delete();
 										break;

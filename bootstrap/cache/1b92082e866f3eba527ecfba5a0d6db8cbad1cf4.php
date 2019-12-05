@@ -17,6 +17,7 @@
   <!-- Sitewrapper -->
   <div class="site-wrapper">
     <?php echo $__env->yieldContent('content'); ?>
+    <div class="notify text-center"></div>
   </div>
 
   <!-- Footer -->

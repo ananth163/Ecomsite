@@ -5,8 +5,6 @@
  */
 namespace App\Controllers;
 
-
-
 class Indexcontroller extends Basecontroller
 {
 	

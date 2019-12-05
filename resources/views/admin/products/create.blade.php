@@ -52,10 +52,10 @@
 					</div>
 					<div class="grid-x grid-padding-x">
 						<div class="cell small-12 medium-6">
-			        		<label for="quantity">Product Quantity
-			          			<select name="quantity">
-			          				<option value="{{App\Classes\Request::input('quantity')}}">
-			          					{{App\Classes\Request::input('quantity')??'Select Quantity'}}
+			        		<label for="stock">Product Stock
+			          			<select name="stock">
+			          				<option value="{{App\Classes\Request::input('stock')}}">
+			          					{{App\Classes\Request::input('stock')??'Select Stock'}}
 			          				</option>
 			          				@for($i=1; $i <= 50; $i++)
 			          					<option value="{{$i}}">{{$i}}</option>

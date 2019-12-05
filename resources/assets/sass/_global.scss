@@ -10,8 +10,38 @@ html,body{
 	line-height		: 1.5;
 	padding			: 0;
 	margin 			: 0;
-	font-family		: 'Open Sans', sans-serif;
+	font-family		: 'Old Standard TT', serif;
 
+}
+
+h2{
+
+ 	font-family		: 'Cabin', sans-serif;
+ 	font-size		: 1.5rem;
+ 	margin-botton	: 1.6rem;
+ 	padding			: 1rem;
+ 	font-weight		: 500;
+
+ 	@include breakpoint(medium only){
+
+ 		font-size	: 1.5rem;
+ 	}
+
+ 	@include breakpoint(large){
+
+ 		font-size	: 2rem;
+ 	}
+
+ }
+
+ p{
+	font-family		: 'Old Standard TT', serif;
+	font-size		: 1rem;
+
+	@include breakpoint(large){
+
+ 		font-size	: 1.5rem;
+ 	}
 }
 
 .site-wrapper{
@@ -38,21 +68,16 @@ html,body{
  	}
 
  h2{
-
- 	font-size		: 1rem;
-
- 	}
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
 }
 
-h2{
 
- 	font-size		: 1.5rem;
- 	margin-top		: 1rem;
- 	margin-bottom	: 0;
- 	margin-left		: 1rem;
- 	font-weight		: 500;
 
- 	}
+[v-cloak] .v-cloak--hidden{
+	display		: none;
+}
 
 hr{
 	margin 			: 0 0 1rem 1rem;
@@ -106,4 +131,16 @@ hr{
 			list-style-type: none;
 		}
 	}
+}
+
+.notify{
+	display: none;
+	position: fixed;
+	padding: 1rem;
+	right: 1rem;
+	bottom: 1rem;
+	width: 300px;
+	border-radius: 0.5rem;
+	background-color: #00AA00;
+	color: #ffffff;
 }

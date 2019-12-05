@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Cabin|Old+Standard+TT&display=swap');
+
 @import "settings";
 
 @import "~foundation-sites/assets/foundation";
@@ -7,6 +9,10 @@
 @import "pages/nav";
 
 @import "pages/home";
+
+@import "pages/product";
+
+@import "pages/cart";
 
 @import "global";
 

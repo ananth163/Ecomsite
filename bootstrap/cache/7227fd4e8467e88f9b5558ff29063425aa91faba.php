@@ -38,7 +38,7 @@
       							<th>Image</th>
       							<th>Name</th>
       							<th>Price</th>
-      							<th>Quantity</th>
+      							<th>Stock</th>
       							<th>Category</th>
       							<th>Subcategory</th>
       							<th>Last Updated</th>
@@ -51,7 +51,7 @@
   									<td><img src="/<?php echo e($product->image_path); ?>" alt="<?php echo e($product->name); ?>" height="30" width="30"></td>
   									<td><?php echo e($product->name); ?></td>
   									<td><?php echo e($product->price); ?></td>
-  									<td><?php echo e($product->quantity); ?></td>
+  									<td><?php echo e($product->stock); ?></td>
   									<td>
   										<?php echo e(App\Models\Product::find($product->id)->category->name ?? null); ?>
 
@@ -68,7 +68,7 @@
   										<a data-open="deleteitem-<?php echo e($product->id); ?>">
   											<i class="fas fa-trash"></i>
   										</a>
-  										<?php echo $__env->make('admin.includes.deletemodal', ['id'   => $product->id, 
+  										<?php echo $__env->make('includes.deletemodal', ['id'   => $product->id, 
   																				'name' => $product->name,
   																				'item' => 'product'] , \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
   									</td>
@@ -76,7 +76,7 @@
   							<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
   						</tbody>					
 					</table>
-					<?php echo e($products->links('pagination.categories', 
+					<?php echo e($products->links('pagination.pagination', 
 													['paginator' => $products])); ?>
 
 				</div>

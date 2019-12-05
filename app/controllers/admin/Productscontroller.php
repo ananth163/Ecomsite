@@ -157,7 +157,7 @@ class Productscontroller extends Basecontroller
 			                                			'required|min:2|numeric',
 			                                	'description'  => 
 			                                			 'required|max:500|mixed',
-			                                	'quantity' 	   => 'required',
+			                                	'stock' 	   => 'required',
 			                                	'category' 	   => 'required',
 			                                	'subcategory'  => 'required',                                	
 			                                	'productImage' =>
@@ -199,7 +199,7 @@ class Productscontroller extends Basecontroller
 
 		$product->description = trim($request->description);
 
-		$product->quantity = $request->quantity;
+		$product->stock = $request->stock;
 
 		$product->category_id = $request->category;
 
@@ -247,7 +247,7 @@ class Productscontroller extends Basecontroller
 			                                			'required|min:2|numeric',
 			                                	'description'  => 
 			                                			 'required|max:500|mixed',
-			                                	'quantity' 	   => 'required',
+			                                	'stock' 	   => 'required',
 			                                	'category' 	   => 'required',
 			                                	'subcategory'  => 'required',                              	
 			                                	'productImage' =>
@@ -269,7 +269,7 @@ class Productscontroller extends Basecontroller
 						'name' 		  	  => $request->name,
 						'price' 	  	  => $request->price,
 						'description' 	  => $request->description,
-						'quantity' 	  	  => $request->quantity,
+						'stock' 	  	  => $request->stock,
 						'category_id' 	  => $request->category,
 						'sub_category_id' => $request->subcategory,
 						'image_path'	  => $imagePath]);

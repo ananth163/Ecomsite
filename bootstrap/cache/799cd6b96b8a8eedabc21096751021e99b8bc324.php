@@ -50,10 +50,10 @@
 					</div>
 					<div class="grid-x grid-padding-x">
 						<div class="cell small-12 medium-6">
-			        		<label for="quantity">Product Quantity
-			          			<select name="quantity">
-			          				<option value="<?php echo e(App\Classes\Request::input('quantity')); ?>">
-			          					<?php echo e(App\Classes\Request::input('quantity')??'Select Quantity'); ?>
+			        		<label for="stock">Product Stock
+			          			<select name="stock">
+			          				<option value="<?php echo e(App\Classes\Request::input('stock')); ?>">
+			          					<?php echo e(App\Classes\Request::input('stock')??'Select Stock'); ?>
 
 			          				</option>
 			          				<?php for($i=1; $i <= 50; $i++): ?>

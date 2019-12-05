@@ -5,26 +5,20 @@
  */
 namespace App\Controllers;
 
-use App\Classes\Mail;
-use App\Classes\Pagination;
-use App\Models\Category;
-use App\Models\SubCategory;
+use App\Classes\Session;
+use App\Models\Product;
+
 
 class Democontroller extends Basecontroller
 {
 	
-	public function __construct ()
-	{
-		new Pagination;
-	}
 	public function show()
 	{
 
-		$category = Category::find(1)->with('subcategories')->get();
+		$product = Product::where('id', 1)->first()->attributesToArray();
 
-		//$subcategories = $category->subcategories;
+		var_dump($product);		
 
-		var_dump($category[0]->subcategories->paginate(3));
 		exit();
 		
 						

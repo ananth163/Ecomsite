@@ -40,7 +40,7 @@
       							<th>Image</th>
       							<th>Name</th>
       							<th>Price</th>
-      							<th>Quantity</th>
+      							<th>Stock</th>
       							<th>Category</th>
       							<th>Subcategory</th>
       							<th>Last Updated</th>
@@ -53,7 +53,7 @@
   									<td><img src="/{{$product->image_path}}" alt="{{$product->name}}" height="30" width="30"></td>
   									<td>{{$product->name}}</td>
   									<td>{{$product->price}}</td>
-  									<td>{{$product->quantity}}</td>
+  									<td>{{$product->stock}}</td>
   									<td>
   										{{App\Models\Product::find($product->id)->category->name ?? null}}
   									</td>
@@ -68,7 +68,7 @@
   										<a data-open="deleteitem-{{$product->id}}">
   											<i class="fas fa-trash"></i>
   										</a>
-  										@include('admin.includes.deletemodal', ['id'   => $product->id, 
+  										@include('includes.deletemodal', ['id'   => $product->id, 
   																				'name' => $product->name,
   																				'item' => 'product'] )
   									</td>

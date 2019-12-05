@@ -37,7 +37,7 @@ class Session {
         	
         }
 
-        return $_SESSION[$key];
+        return $_SESSION[$key] ?? '';
 
     }
 
@@ -116,7 +116,7 @@ class Session {
         if( empty($key) || empty($value))
         {
 
-        	throw new \Exception("Session key {$key} or value {$value} is empty");
+        	throw new \Exception("Session key or value is empty");
         	
         }
         

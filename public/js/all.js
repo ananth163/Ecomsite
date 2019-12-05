@@ -25310,6 +25310,8 @@ __webpack_require__(/*! ../../assets/js/pages/slider */ "./resources/assets/js/p
 
 __webpack_require__(/*! ../../assets/js/pages/home_products */ "./resources/assets/js/pages/home_products.js");
 
+__webpack_require__(/*! ../../assets/js/pages/cart */ "./resources/assets/js/pages/cart.js");
+
 __webpack_require__(/*! ../../assets/js/init */ "./resources/assets/js/init.js");
 
 /***/ }),
@@ -25332,6 +25334,14 @@ __webpack_require__(/*! ../../assets/js/init */ "./resources/assets/js/init.js")
         SITE.home.products();
         break;
 
+      case 'products':
+        SITE.home.products();
+        break;
+
+      case 'cart':
+        SITE.home.cart();
+        break;
+
       case 'adminProducts':
         SITE.admin.changeEvent();
         SITE.admin["delete"]();
@@ -25351,6 +25361,104 @@ __webpack_require__(/*! ../../assets/js/init */ "./resources/assets/js/init.js")
 
 /***/ }),
 
+/***/ "./resources/assets/js/pages/cart.js":
+/*!*******************************************!*\
+  !*** ./resources/assets/js/pages/cart.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function () {
+  'use strict';
+
+  SITE.home.cart = function () {
+    /* Set rates + misc */
+    var taxRate = 0.05;
+    var shippingRate = 15.00;
+    var fadeTime = 300;
+    /* Assign actions */
+
+    $('.product-quantity input').change(function () {
+      updateQuantity(this);
+    });
+    $('.product-removal button').click(function () {
+      var item = this;
+      var token = $(this).data('token');
+      var id = $(this).data('id');
+      var data = $.param({
+        id: id,
+        token: token
+      });
+      axios.post('/cart/delete', data).then(function (response) {
+        removeItem(item);
+      });
+    });
+    /* Recalculate cart */
+
+    function recalculateCart() {
+      var subtotal = 0;
+      /* Sum up row totals */
+
+      $('.product').each(function () {
+        subtotal += parseFloat($(this).children('.product-line-price').text());
+      });
+      /* Calculate totals */
+
+      var tax = subtotal * taxRate;
+      var shipping = subtotal > 0 ? shippingRate : 0;
+      var total = subtotal + tax + shipping;
+      /* Update totals display */
+
+      $('.totals-value').fadeOut(fadeTime, function () {
+        $('#cart-subtotal').html(subtotal.toFixed(2));
+        $('#cart-tax').html(tax.toFixed(2));
+        $('#cart-shipping').html(shipping.toFixed(2));
+        $('#cart-total').html(total.toFixed(2));
+
+        if (total == 0) {
+          $('.checkout').fadeOut(fadeTime);
+        } else {
+          $('.checkout').fadeIn(fadeTime);
+        }
+
+        $('.totals-value').fadeIn(fadeTime);
+      });
+    }
+    /* Update quantity */
+
+
+    function updateQuantity(quantityInput) {
+      /* Calculate line price */
+      var productRow = $(quantityInput).parent().parent();
+      var price = parseFloat(productRow.children('.product-price').text());
+      var quantity = $(quantityInput).val();
+      var linePrice = price * quantity;
+      /* Update line price display and recalc cart totals */
+
+      productRow.children('.product-line-price').each(function () {
+        $(this).fadeOut(fadeTime, function () {
+          $(this).text(linePrice.toFixed(2));
+          recalculateCart();
+          $(this).fadeIn(fadeTime);
+        });
+      });
+    }
+    /* Remove item from cart */
+
+
+    function removeItem(removeButton) {
+      /* Remove row from DOM and recalc cart total */
+      var productRow = $(removeButton).parent().parent();
+      productRow.slideUp(fadeTime, function () {
+        productRow.remove();
+        recalculateCart();
+      });
+    }
+  };
+})();
+
+/***/ }),
+
 /***/ "./resources/assets/js/pages/home_products.js":
 /*!****************************************************!*\
   !*** ./resources/assets/js/pages/home_products.js ***!
@@ -25363,20 +25471,69 @@ __webpack_require__(/*! ../../assets/js/init */ "./resources/assets/js/init.js")
 
   SITE.home.products = function () {
     var app = new Vue({
-      el: '#featured',
+      el: '#products',
       data: {
         featured: [],
+        products: [],
+        count: 0,
         loading: false
       },
       methods: {
-        getFeaturedProducts: function getFeaturedProducts() {
-          this.loading = true, axios.get("/featured").then(function (response) {
-            console.log(response.data);
+        getProducts: function getProducts() {
+          this.loading = true;
+          axios.all([axios.get('/featured'), axios.get('/get-products')]).then(axios.spread(function (featuredResponse, productsResponse) {
+            app.featured = featuredResponse.data.featured;
+            app.products = productsResponse.data.products;
+            app.count = productsResponse.data.count;
+            app.loading = false;
+          }));
+        },
+        loadMoreProducts: function loadMoreProducts() {
+          this.loading = true;
+          var data = $.param({
+            next: 2,
+            count: app.count
           });
+          axios.post('/load-more', data).then(function (response) {
+            app.products = response.data.products;
+            app.count = response.data.count;
+            app.loading = false;
+          });
+        },
+        addToCart: function addToCart(id) {
+          var token = $('.display-products').data('token');
+          var data = $.param({
+            product: {
+              product_id: id,
+              quantity: 1
+            },
+            token: token
+          });
+          axios.post('/cart/add/', data).then(function (response) {
+            var total = response.data.totalItems; // Display success message
+
+            $(".notify").css("display", 'block').delay(4000).slideUp(300).html("Item added to Cart"); // Update Cart
+
+            $('.cart').html("<i class='fa fa-shopping-cart' aria-hidden='true'></i>&nbsp;Cart(" + total + ")");
+          });
+        },
+        stringLimit: function stringLimit(string, value) {
+          if (string.length > value) {
+            return string.substring(0, value - 3) + '...';
+          } else {
+            return string;
+          }
         }
       },
       created: function created() {
-        this.getFeaturedProducts();
+        this.getProducts();
+      },
+      mounted: function mounted() {
+        $(window).scroll(function () {
+          if ($(window).height() + $(window).scrollTop() == $(document).height()) {
+            app.loadMoreProducts();
+          }
+        });
       }
     });
   };
