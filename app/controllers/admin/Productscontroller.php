@@ -7,6 +7,7 @@ use App\Classes\FileHandler;
 use App\Classes\Pagination;
 use App\Classes\Redirect;
 use App\Classes\Request;
+use App\Classes\Role;
 use App\Classes\Session;
 use App\Classes\Validator;
 use App\Controllers\Basecontroller;
@@ -27,11 +28,19 @@ class Productscontroller extends Basecontroller
 	 **/
 	public function __construct()
 	{
+		// Verify if user is admin
+		if(!Role::is('admin'))
+		{
+			Redirect::to('/login');
+
+			exit();
+		}
+
 		// Inject Pagination container
 		new Pagination;
 
 		//Get the paginated products result
-		$this->products = Product::paginate(5);
+		$this->products = Product::paginate(10);
 
 	}
 

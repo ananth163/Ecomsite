@@ -6,6 +6,8 @@
 
 @import "admin/nav";
 
+@import "admin/dashboard";
+
 @import "pages/nav";
 
 @import "pages/home";
@@ -15,6 +17,10 @@
 @import "pages/cart";
 
 @import "pages/register";
+
+@import "pages/payment";
+
+@import "pages/orders";
 
 @import "global";
 

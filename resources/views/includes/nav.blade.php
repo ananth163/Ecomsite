@@ -30,8 +30,13 @@
         				@endforeach
         			</ul>
       			</li>
-            <li><a href="/cart" class="cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;Cart</a></li>
+            @if(Cart()->isEmpty())
+              <li><a href="/cart" class="cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;Cart</a></li>
+            @else
+              <li><a href="/cart" class="cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;Cart({{Cart()->getItemsTotal()}})</a></li>
+            @endif
       			@if(isAuthenticated())
+              <li><a href="/orders">Orders</a></li>
               <li><a href="/logout">Sign Out</a></li>
             @else
               <li><a href="/login">SignIn</a></li>
@@ -73,12 +78,18 @@
       			<ul class="dropdown menu" data-dropdown-menu>
                 @if(isAuthenticated())
         				  <li class="menu-text">{{getUser()->username}}</li>
+                  <li><a href="/orders">Orders</a></li>
                   <li><a href="/logout">Sign Out</a></li>
                 @else
         				  <li><a href="/login">SignIn</a></li>
         				  <li><a href="/sign-up">Register</a></li>
                 @endif
-        				<li><a href="/cart" class="cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;Cart</a></li>
+        				@if(Cart()->isEmpty())
+                  <li><a href="/cart" class="cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;Cart</a>
+                  </li>
+                @else
+                  <li><a href="/cart" class="cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;Cart({{Cart()->getItemsTotal()}})</a></li>
+            @endif
       			</ul>
   	 		</div>
 		  </div>

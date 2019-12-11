@@ -76,10 +76,6 @@ class Authcontroller extends Basecontroller
 						'email'	   => $request->email,
 						'password' => password_hash($pwd_peppered, PASSWORD_BCRYPT) ]);
 
-		//var_dump($request);
-
-		//exit();
-
 		Session::setValueFor('success', 'Account created successfully. Please Login');
 
 		Redirect::to('/login');						
@@ -135,11 +131,22 @@ class Authcontroller extends Basecontroller
 													(array) 'Username or Password is Incorrect.' ]);
 		}
 
-		//var_dump($user);
-
-		//exit();
-
 		Session::setValueFor('SESSION_USER_ID', $user->id);
+
+		if ($user->role == 'admin') {
+			
+			Redirect::to('/admin');
+
+			exit();
+		}
+
+		if(!Cart()->isEmpty())
+		{
+
+			Redirect::to('/cart');
+
+			exit();
+		}
 
 		Redirect::to('/');						
 	}
@@ -150,6 +157,12 @@ class Authcontroller extends Basecontroller
 	 **/	
 	public function logout()
 	{
+		// Save any pending orders to Database
+		if (!Cart()->isEmpty()) {
+			
+			Cart()->saveOrder();
+		}
+		
 		Session::clear();
 
 		Redirect::to('/');						

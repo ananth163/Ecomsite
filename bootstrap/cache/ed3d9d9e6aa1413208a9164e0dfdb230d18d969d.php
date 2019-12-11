@@ -63,8 +63,15 @@
                 <label>Grand Total</label>
                 <div class="totals-value" id="cart-total"><?php echo e($subTotal * 1.05 + 15.00); ?></div>
               </div>
-            </div>      
-            <button class="checkout">Checkout</button>
+            </div>
+            <div class="text-right">
+              <a href="/" class="button secondary"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;Continue Shopping</a>
+              <?php if(isAuthenticated()): ?>
+                <a href="#" class="button success"><i class="fa fa-credit-card" aria-hidden="true"></i>&nbsp;Checkout</a>
+              <?php else: ?>
+                <a href="/login" class="button success"><i class="fa fa-credit-card" aria-hidden="true"></i>&nbsp;Checkout</a>
+              <?php endif; ?>
+            </div>                     
           <?php endif; ?>
         </div>
       </div>

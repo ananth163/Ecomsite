@@ -1,0 +1,21 @@
+.orders-history{
+	
+	@include breakpoint(medium){
+
+ 		margin-top: 2rem;
+  	}
+
+  	.order{
+  		border: 1px solid #e6e6e6;
+  		margin-bottom: 1rem;
+
+  		.stacked{
+  			
+  			@include breakpoint(medium){
+
+ 				margin-left: 2rem;
+ 				margin-right: 2rem;
+  			}
+  		}
+  	}
+}

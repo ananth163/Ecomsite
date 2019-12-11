@@ -5,7 +5,7 @@
 @section('pageid', 'adminProducts')
 
 @section('content')
-	<div class="products">
+	<div class="products admin_shared">
 		<div class="grid-x ">
 				<h2>Manage Inventory</h2>
 				<hr />

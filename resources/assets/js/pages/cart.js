@@ -12,7 +12,14 @@
 
 		/* Assign actions */
 		$('.product-quantity input').change( function() {
-  				updateQuantity(this);
+  				var item = this;
+  				var token = $(this).data('token');
+  				var id = $(this).data('id');
+  				var quantity = $(this).val();
+  				var data = $.param({product: {product_id: id, quantity: quantity}, token: token});
+  				axios.post('/cart/update', data).then(function(response){
+  					updateQuantity(item);
+  				})
 		});
 
 		$('.product-removal button').click( function() {

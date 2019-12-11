@@ -30,8 +30,13 @@
         				<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         			</ul>
       			</li>
-            <li><a href="/cart" class="cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;Cart</a></li>
+            <?php if(Cart()->isEmpty()): ?>
+              <li><a href="/cart" class="cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;Cart</a></li>
+            <?php else: ?>
+              <li><a href="/cart" class="cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;Cart(<?php echo e(Cart()->getItemsTotal()); ?>)</a></li>
+            <?php endif; ?>
       			<?php if(isAuthenticated()): ?>
+              <li><a href="/orders">Orders</a></li>
               <li><a href="/logout">Sign Out</a></li>
             <?php else: ?>
               <li><a href="/login">SignIn</a></li>
@@ -73,12 +78,18 @@
       			<ul class="dropdown menu" data-dropdown-menu>
                 <?php if(isAuthenticated()): ?>
         				  <li class="menu-text"><?php echo e(getUser()->username); ?></li>
+                  <li><a href="/orders">Orders</a></li>
                   <li><a href="/logout">Sign Out</a></li>
                 <?php else: ?>
         				  <li><a href="/login">SignIn</a></li>
         				  <li><a href="/sign-up">Register</a></li>
                 <?php endif; ?>
-        				<li><a href="/cart" class="cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;Cart</a></li>
+        				<?php if(Cart()->isEmpty()): ?>
+                  <li><a href="/cart" class="cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;Cart</a>
+                  </li>
+                <?php else: ?>
+                  <li><a href="/cart" class="cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;Cart(<?php echo e(Cart()->getItemsTotal()); ?>)</a></li>
+            <?php endif; ?>
       			</ul>
   	 		</div>
 		  </div>

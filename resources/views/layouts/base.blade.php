@@ -23,6 +23,7 @@
   <!-- Footer -->
   @yield('footer')
 
+  @yield('scripts')
   
   <script type="text/javascript" src="/js/all.js" async></script>
 </body>

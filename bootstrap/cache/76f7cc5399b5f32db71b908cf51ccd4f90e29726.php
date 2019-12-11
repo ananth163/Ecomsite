@@ -3,7 +3,7 @@
 <?php $__env->startSection('pageid', 'adminCategories'); ?>
 
 <?php $__env->startSection('content'); ?>
-	<div class="category">
+	<div class="category admin_shared">
 		<div class="grid-x">
 			<h2>Product Categories</h2>
 			<hr />

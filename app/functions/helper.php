@@ -1,5 +1,6 @@
 <?php 
 
+use App\Classes\Cart;
 use App\Classes\Session;
 use App\Models\User;
 use Philo\Blade\Blade;
@@ -71,6 +72,17 @@ function view( $path = '', $data = [] )
  	$string = trim($string, '-');
 
  	return $string;
+ }
+
+ /**
+  * Get the Cart details
+  *
+  * @return Cart
+  *
+  **/
+ function Cart( )
+ {
+   return new Cart();
  }
 
  /**

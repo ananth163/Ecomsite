@@ -4,7 +4,7 @@
 
 <?php $__env->startSection('content'); ?>
 	<?php echo $__env->make('includes.messages', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-	<div class="login-box">
+	<div class="login-form" style="margin-top: 2rem;">
       <div class="grid-x grid-padding-x expanded align-center">
         <div class="cell small-12 medium-6">
           <form class="log-in-form" action="/login" method="post">

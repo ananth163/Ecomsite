@@ -18,7 +18,7 @@ class Product extends Model
      *
      * @var array
      */
-	protected $fillable = ['name', 'price', 'description', 'quantity',
+	protected $fillable = ['name', 'price', 'description', 'stock',
                            'category_id', 'sub_category_id', 'image_path'];
 
 	/**
@@ -49,7 +49,7 @@ class Product extends Model
     public function subCategory()
     {
         return $this->belongsTo('App\Models\SubCategory');
-    }
+    }    
     
 }
 

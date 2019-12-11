@@ -5,7 +5,7 @@
 @section('pageid', 'adminProducts')
 
 @section('content')
-	<div class="product">
+	<div class="product admin_shared">
 		<div class="grid-container">
 			<div class="grid-x grid-padding-x">
 				<div class="cell medium-11">

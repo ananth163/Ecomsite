@@ -33,5 +33,15 @@
   			</button>				
 		</div>
 	</div>
+	<?php elseif(App\Classes\Session::hasKey('error')): ?>
+	<div class="cell small-5 large-offset-2">
+		<div class="callout small alert" data-closable="slide-out-right">
+			<h5>Error!</h5>
+			<p><?php echo e(App\Classes\Session::flush('error')); ?></p>
+			<button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+    			<span aria-hidden="true">&times;</span>
+  			</button>				
+		</div>
+	</div>
 	<?php endif; ?>
 </div><?php /**PATH D:\Ecomsite\resources\views/includes/messages.blade.php ENDPATH**/ ?>

@@ -42,7 +42,7 @@ $font-bold: 'HelveticaNeue-Medium', 'Helvetica Neue Medium';
 
 /* Apply dollar signs */
 .product .product-price:before, .product .product-line-price:before, .totals-value:before {
-  content: '$';
+  content: '₹';
 }
 
 
@@ -106,7 +106,7 @@ label {
   
   .product-quantity {
     input {
-      width: 40px;
+      width: 50px;
       
     }
   }

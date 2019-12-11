@@ -45,6 +45,7 @@ final class Versions
   'psr/container' => '1.0.0@b7ce3b176482dbbc1245ebf52b181af44c2cf55f',
   'psr/log' => '1.1.0@6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd',
   'psr/simple-cache' => '1.0.1@408d5eafb83c57f6365a3ca330ff23aa4a5fa39b',
+  'stripe/stripe-php' => 'v7.14.2@d7d11658defa08ca8f6fc6668c745aaa67f56bdf',
   'symfony/console' => 'v4.3.5@929ddf360d401b958f611d44e726094ab46a7369',
   'symfony/debug' => 'v4.3.5@cc5c1efd0edfcfd10b354750594a46b3dd2afbbe',
   'symfony/finder' => 'v4.3.5@5e575faa95548d0586f6bedaeabec259714e44d1',
@@ -58,7 +59,7 @@ final class Versions
   'vlucas/phpdotenv' => 'v3.6.0@1bdf24f065975594f6a117f0f1f6cabf1333b156',
   'zendframework/zend-code' => '3.4.0@46feaeecea14161734b56c1ace74f28cb329f194',
   'zendframework/zend-eventmanager' => '3.2.1@a5e2583a211f73604691586b8406ff7296a946dd',
-  '__root__' => 'dev-master@f903d253c478e1a262d67adcf459b0ab9f4a11e9',
+  '__root__' => 'dev-master@76b072f9d3c235ca6dd8fb810a37237e794c4913',
 );
 
     private function __construct()

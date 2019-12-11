@@ -9,11 +9,23 @@ use App\Classes\CSRFHandler;
 use App\Classes\Cart;
 use App\Classes\Request;
 use App\Classes\Session;
-use App\Models\Product;
+use App\Classes\Order;
+
 
 class Cartcontroller extends Basecontroller
 {
 	
+	/**
+	 * @var object Cart instance
+	 *
+	 **/
+	protected $cart;
+
+	public function __construct()
+	{
+		// Instantiate cart
+		$this->cart = new Cart();
+	}
 	public function add()
 	{
 
@@ -25,11 +37,17 @@ class Cartcontroller extends Basecontroller
 			throw new \Exception("Unauthorized access");
 			
 		}
+
+		// If Cart is Empty, Create new Order
+		if ($this->cart->isEmpty()) {
+			
+			$this->cart->createOrder();
+		}
 		
 		// Add item to Cart
-		$index = Cart::addItem( (array) $request->product);
+		$this->cart->addItem( (array) $request->product);
 
-		$totalItems = Cart::getItemsTotal();
+		$totalItems = $this->cart->getItemsTotal();
 
 		echo json_encode(compact('totalItems'));
 
@@ -40,27 +58,14 @@ class Cartcontroller extends Basecontroller
 
 	public function show()
 	{
-		// Get Items from Cart
-		$items = Cart::getItems();
+		// Get Product details of each Item in Cart
+		$products = $this->cart->getProducts();		
 
-		$products = array_map( function($item) {
-
-						$product = Product::where('id', $item['product_id'])->first()->attributesToArray();
-
-						return json_decode(json_encode(array_merge($item, $product)), false);
-
-					}
-
-						, $items);
-
-		// Get Sum total of Cart
-		$subTotal = Cart::getTotal($products);
-
-		//var_dump(Product::where('id', '<', 4)->get());
+		//var_dump($products);
 
 		//exit();
 
-		return view('cart', compact('products', 'subTotal'));
+		return view('orders/cart', compact('products'));
 	}
 
 	public function delete()
@@ -74,9 +79,26 @@ class Cartcontroller extends Basecontroller
 			
 		}
 		
-		// Add item to Cart
-		$index = Cart::removeItem($request->id);
+		// Remove item from Cart
+		$index = $this->cart->removeItem($request->id);
 	}
+
+	public function update()
+	{
+		$request = Request::fetchType('POST');		
+
+		// Check if Request token is valid
+		if (!CSRFHandler::validateToken($request->token)) {
+			
+			throw new \Exception("Unauthorized access");
+			
+		}
+		
+		// Update the item in Cart
+		$index = $this->cart->updateItem( (array) $request->product);
+	}
+
+	
 }
 
  ?>

@@ -100,8 +100,17 @@
 						app.loadMoreProducts();
 					
 					}
-				})				
-			}
+				});
+
+				$(this.$el).foundation();
+			
+			},
+  
+  			destroyed: function() {
+    
+    			// eslint-disable-next-line
+    			$(this.$el).foundation.destroy();
+  			},
 
 		});
 

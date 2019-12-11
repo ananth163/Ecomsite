@@ -4384,8 +4384,8 @@ a.button:focus {
 
 .button-group .button {
   margin: 0;
-  margin-right: 1px;
-  margin-bottom: 1px;
+  margin-right: 0.8rem;
+  margin-bottom: 0.8rem;
   font-size: 0.9rem;
   flex: 0 0 auto;
 }
@@ -7778,6 +7778,99 @@ html.is-reveal-open body {
   color: #0a0a0a;
 }
 
+.dashboard {
+  padding: 2rem 1rem;
+}
+
+@media screen and (max-width: 39.99875em) {
+  .dashboard .summary {
+    padding-bottom: 1rem;
+  }
+}
+
+.dashboard .summary .card {
+  width: 95%;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 40em) and (max-width: 63.99875em) {
+  .dashboard .summary .card {
+    width: 98%;
+  }
+}
+
+@media screen and (min-width: 40em) and (max-width: 63.99875em) {
+  .dashboard .summary .card .card-section {
+    font-size: 0.8rem;
+  }
+}
+
+.dashboard .summary .card .card-section .fa {
+  font-size: 2.5rem;
+}
+
+@media screen and (min-width: 40em) and (max-width: 63.99875em) {
+  .dashboard .summary .card .card-section .fa {
+    font-size: 2rem;
+  }
+}
+
+.dashboard .summary .card .card-section .fa.fa-shopping-cart {
+  color: #ff4500;
+}
+
+.dashboard .summary .card .card-section .fa.fa-thermometer-empty {
+  color: #da8301;
+}
+
+.dashboard .summary .card .card-section .fa.fa-money-bill-wave {
+  color: #00AA00;
+}
+
+.dashboard .summary .card .card-section .fa.fa-users {
+  color: #00BFFF;
+}
+
+.dashboard .summary .card .card-section p,
+.dashboard .summary .card .card-section h4 {
+  margin: 0;
+  padding: 0;
+  text-align: right;
+}
+
+.dashboard .summary .card .card-divider {
+  border-bottom: 1px solid #6c9a9d;
+  background-color: #ffffff;
+}
+
+.dashboard .summary .card .card-divider a {
+  color: #337ab7;
+}
+
+.dashboard .graph {
+  margin: 2rem 0.5rem;
+}
+
+@media screen and (max-width: 39.99875em) {
+  .dashboard .graph {
+    margin-top: 1rem;
+  }
+}
+
+.dashboard .graph .card {
+  width: 98%;
+}
+
+.dashboard .graph canvas {
+  height: 300px !important;
+}
+
+@media screen and (max-width: 39.99875em) {
+  .dashboard .graph canvas {
+    height: auto !important;
+  }
+}
+
 .navigation .logo {
   background-image: url("/images/logo/logo.png");
   width: 10rem;
@@ -8029,7 +8122,7 @@ Side note: I know that this style of nesting in SASS doesn't result in the most 
 .product .product-price:before,
 .product .product-line-price:before,
 .totals-value:before {
-  content: "$";
+  content: "\20B9";
 }
 
 /* Body/Header stuff */
@@ -8093,7 +8186,7 @@ label {
 }
 
 .product .product-quantity input {
-  width: 40px;
+  width: 50px;
 }
 
 .product .remove-product {
@@ -8465,6 +8558,49 @@ label {
   text-align: center;
 }
 
+.payment-form input,
+.payment-form .StripeElement {
+  height: 40px;
+  padding: 10px 12px;
+  color: #32325d;
+  background-color: white;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  transition: box-shadow 150ms ease;
+}
+
+.payment-form input:focus,
+.payment-form .StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.payment-form .StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.payment-form .StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+
+@media print, screen and (min-width: 40em) {
+  .orders-history {
+    margin-top: 2rem;
+  }
+}
+
+.orders-history .order {
+  border: 1px solid #e6e6e6;
+  margin-bottom: 1rem;
+}
+
+@media print, screen and (min-width: 40em) {
+  .orders-history .order .stacked {
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+}
+
 html,
 body {
   font-size: 1rem;
@@ -8477,7 +8613,7 @@ body {
 h2 {
   font-family: "Cabin", sans-serif;
   font-size: 1.5rem;
-  margin-botton: 1.6rem;
+  margin-bottom: 1.6rem;
   padding: 1rem;
   font-weight: 500;
 }
@@ -8505,6 +8641,42 @@ p {
   }
 }
 
+[v-cloak] .v-cloak--hidden {
+  display: none;
+}
+
+hr {
+  margin: 0 0 1rem 1rem;
+  clear: both;
+  display: block;
+  width: 84%;
+  height: 1px;
+}
+
+.admin_shared.product hr {
+  margin: 0 0 1rem 1rem;
+  clear: both;
+  display: block;
+  width: 90%;
+  height: 1px;
+}
+
+.admin_shared hr {
+  margin: 0 0 1rem 1rem;
+  clear: both;
+  display: block;
+  width: 84%;
+  height: 1px;
+}
+
+.admin_shared h2 {
+  font-family: "Cabin", sans-serif;
+  font-size: 1.5rem;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: 500;
+}
+
 .site-wrapper {
   min-height: 100%;
   position: relative;
@@ -8526,18 +8698,6 @@ p {
 .reveal-update h2 {
   font-size: 1.5rem;
   font-weight: 500;
-}
-
-[v-cloak] .v-cloak--hidden {
-  display: none;
-}
-
-hr {
-  margin: 0 0 1rem 1rem;
-  clear: both;
-  display: block;
-  width: 84%;
-  height: 1px;
 }
 
 .reveal-delete {

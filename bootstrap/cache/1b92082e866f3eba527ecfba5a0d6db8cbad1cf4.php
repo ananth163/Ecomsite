@@ -23,6 +23,7 @@
   <!-- Footer -->
   <?php echo $__env->yieldContent('footer'); ?>
 
+  <?php echo $__env->yieldContent('scripts'); ?>
   
   <script type="text/javascript" src="/js/all.js" async></script>
 </body>

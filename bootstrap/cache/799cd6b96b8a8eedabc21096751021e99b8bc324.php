@@ -3,7 +3,7 @@
 <?php $__env->startSection('pageid', 'adminProducts'); ?>
 
 <?php $__env->startSection('content'); ?>
-	<div class="product">
+	<div class="product admin_shared">
 		<div class="grid-container">
 			<div class="grid-x grid-padding-x">
 				<div class="cell medium-11">

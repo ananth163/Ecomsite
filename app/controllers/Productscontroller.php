@@ -55,6 +55,7 @@ class Productscontroller extends Basecontroller
 
 		//var_dump($product);
 		//exit();
+		
 		if (! $product) {
 			return view('errors/404');
 		}

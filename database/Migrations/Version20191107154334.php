@@ -31,7 +31,7 @@ final class Version20191107154334 extends AbstractMigration
           name VARCHAR(255) NOT NULL UNIQUE,
           price FLOAT(16),
           description TEXT,
-          quantity INT(6) UNSIGNED, 
+          stock INT(6) UNSIGNED, 
           category_id INT UNSIGNED,
           sub_category_id INT UNSIGNED,
           image_path VARCHAR(255),
@@ -80,6 +80,7 @@ final class Version20191107154334 extends AbstractMigration
           (
           id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT, 
           user_id INT(11),
+          client_secret VARCHAR(255),
           order_no VARCHAR(255),
           amount FLOAT(16) UNSIGNED,
           status VARCHAR(255),

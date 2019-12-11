@@ -18,7 +18,7 @@ h2{
 
  	font-family		: 'Cabin', sans-serif;
  	font-size		: 1.5rem;
- 	margin-botton	: 1.6rem;
+ 	margin-bottom	: 1.6rem;
  	padding			: 1rem;
  	font-weight		: 500;
 
@@ -42,6 +42,51 @@ h2{
 
  		font-size	: 1.5rem;
  	}
+}
+
+[v-cloak] .v-cloak--hidden{
+	display		: none;
+}
+
+hr{
+	margin 			: 0 0 1rem 1rem;
+	clear:both;
+  	display:block;
+  	width: 84%;               
+  	height: 1px;
+}
+
+
+
+.admin_shared{
+	&.product{
+		hr{
+			margin 			: 0 0 1rem 1rem;
+			clear:both;
+  			display:block;
+  			width: 90%;               
+  			height: 1px;
+		}
+	}
+	
+	hr{
+	margin 			: 0 0 1rem 1rem;
+	clear:both;
+  	display:block;
+  	width: 84%;               
+  	height: 1px;
+	}
+
+	h2{
+
+ 	font-family		: 'Cabin', sans-serif;
+ 	font-size		: 1.5rem;
+ 	margin-top		: 0;
+ 	margin-bottom	: 0;
+ 	font-weight		: 500; 	
+
+ 	}
+
 }
 
 .site-wrapper{
@@ -75,17 +120,7 @@ h2{
 
 
 
-[v-cloak] .v-cloak--hidden{
-	display		: none;
-}
 
-hr{
-	margin 			: 0 0 1rem 1rem;
-	clear:both;
-  	display:block;
-  	width: 84%;               
-  	height: 1px;
-}
 
 .reveal-delete{
 	

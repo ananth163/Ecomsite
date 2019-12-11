@@ -11,8 +11,7 @@ class Indexcontroller extends Basecontroller
 	public function show()
 	{
 
-		return view('home');
-		
+		return view('home');		
 						
 	}
 }

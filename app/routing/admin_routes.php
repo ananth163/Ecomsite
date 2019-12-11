@@ -3,6 +3,17 @@
 // Admin Dashboard
 $router->map( 'GET', '/admin', 'App\Controllers\Admin\Dashboardcontroller@show', 'admin_dashboard');
 $router->map( 'POST', '/admin', 'App\Controllers\Admin\Dashboardcontroller@store', 'admin_form');
+$router->map( 'GET', '/admin/charts', 'App\Controllers\Admin\Dashboardcontroller@getCharts', 'admin_charts');
+
+// Payments management
+$router->map( 'GET', '/admin/payments', 'App\Controllers\Admin\Dashboardcontroller@showPayments', 'admin_payments');
+
+// Orders management
+$router->map( 'GET', '/admin/orders', 'App\Controllers\Admin\Dashboardcontroller@showOrders', 'admin_orders');
+$router->map( 'GET', '/admin/orders/[a:order]', 'App\Controllers\Admin\Dashboardcontroller@showOrder', 'admin_order');
+
+// Users management
+$router->map( 'GET', '/admin/users', 'App\Controllers\Admin\Dashboardcontroller@showUsers', 'admin_users');
 
 // Product Categories management
 $router->map( 'GET', '/admin/products/categories',

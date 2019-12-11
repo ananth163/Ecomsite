@@ -18,6 +18,9 @@
 			case 'cart'				: 	SITE.home.cart();
 			 							break;
 
+			case 'payment'			: 	SITE.home.payment();
+			 							break;
+
 			case 'login'			: 	SITE.home.login();
 			 							break;
 
@@ -25,6 +28,8 @@
 										SITE.admin.delete();
 										break;
 
+			case 'adminDashboard'	: 	SITE.admin.dashboard();
+										break;
 			case 'adminCategories'	:
 										SITE.admin.update();
 										SITE.admin.delete();

@@ -37,7 +37,7 @@ class Session {
         	
         }
 
-        return $_SESSION[$key] ?? '';
+        return $_SESSION[$key];
 
     }
 
@@ -53,7 +53,7 @@ class Session {
         
         if ( !self::hasKey($key) ) {
         	
-        	return null;
+        	return 'No key present';
         	
         }
 

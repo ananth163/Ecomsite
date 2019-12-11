@@ -29,7 +29,8 @@
 										<div class="card-section">
 											<p class="text-center">@{{stringLimit(feature.name, 18)}}</p>
 											<p class="text-center">@{{feature.price}}$</p>
-											<a @click.prevent="addToCart(feature.id)" class="button expanded">Add to Cart</a>
+											<a v-if="feature.stock > 0" @click.prevent="addToCart(feature.id)" class="button expanded">Add to Cart</a>
+											<button v-else class="button alert" disabled>Out of Stock</button>
 										</div>
 									</div>
 								</a>
@@ -38,13 +39,14 @@
 						<h2>Product Picks</h2>
 						<div class="grid-x grid-padding-x small-up-2 medium-up-4" data-equalizer>
 							<div class="cell" v-cloak v-for="product in products">
-								<a href="'/product/' + product.id">
+								<a :href="'/product/' + product.id">
 									<div class="card" data-equalizer-watch>
 										<img v-bind:src="'/' + product.image_path" width="100%" >
 										<div class="card-section">
 											<p class="text-center">@{{stringLimit(product.name, 18)}}</p>
 											<p class="text-center">@{{product.price}}$</p>
-											<a @click.prevent="addToCart(product.id)" class="button expanded">Add to Cart</a>
+											<a v-if="product.stock > 0" @click.prevent="addToCart(product.id)" class="button expanded">Add to Cart</a>
+											<button v-else class="button alert" disabled>Out of Stock</button>
 										</div>
 									</div>
 								</a>
